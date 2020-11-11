@@ -1,31 +1,42 @@
+/* eslint-disable */
+
 <template>
-	<div class="container">
-		<div class="week" v-for="(week, i) in weeks" :key="i">
-			<div class="heading">Week {{ i }} of 16</div>
-			<div class="game" v-for="games in week" :key="games.id">
-				<div class="teams">
-					<span :class="{'bold' : games.home_points > games.away_points}">{{ games.home_team }} {{ games.home_points }}</span><br>
-					<span :class="{'bold' : games.home_points < games.away_points}">{{ games.away_team }} {{ games.away_points }}</span>
-				</div>
-				<div class="date">
-					{{ dayjs(games.start_date).format('ddd, MM/D') }} <br>
-					<span v-if="games.home_points">Final</span>
-					<span v-else>{{ dayjs(games.start_date).format('h:mma') }}</span>
+	<div class="season-container">
+		<div v-for="(week, i) in weeks" :key="i">
+			<p class="season-week">Week {{ i }} of 16</p>
+			<div class="season-weekly-container">
+				<div class="game-container" v-for="games in week" :key="games.id">
+					<div class="team-container">
+						<div class="team">
+							<!-- <img src="./img/Kentucky.png" alt=""> -->
+							<span class="name" :class="{'win-team' : games.home_points > games.away_points}">{{ games.home_team }}</span>
+							<span class="score" :class="{'win-score' : games.home_points > games.away_points}">{{ games.home_points }}</span>
+						</div>
+						<div class="team">
+							<!-- <img src="./img/Florida.png" alt=""> -->
+							<span class="name" :class="{'win-team' : games.home_points < games.away_points}">{{ games.away_team }}</span>
+							<span class="score" :class="{'win-score' : games.home_points < games.away_points}">{{ games.away_points }}</span>
+						</div>
+					</div>
+					<div class="date">
+						<p class="game-state">Final</p>
+						<p>{{ dayjs(games.start_date).format('ddd, MM/D') }}</p>
+					</div>
 				</div>
 			</div>
-
-			<!-- <div class="fam">
-				<table>
-					<tr v-for="(picks, j) in week.picks" :key="j">
-						<td v-for="(pick, n) in picks" :key="n">
-							{{ pick }}
-						</td>
-						<td> week pts </td>
-						<td> total pts </td>
-					</tr>
-				</table>
-			</div> -->
 		</div>
+
+		<!-- <div class="fam">
+			<table>
+				<tr v-for="(picks, j) in week.picks" :key="j">
+					<td v-for="(pick, n) in picks" :key="n">
+						{{ pick }}
+					</td>
+					<td> week pts </td>
+					<td> total pts </td>
+				</tr>
+			</table>
+		</div> -->
 	</div>
 </template>
 
@@ -125,52 +136,144 @@ export default {
 </script>
 
 <style>
-/* .container {
-	background-color: #f6f6f6;
-}
-.bold {
-	font-weight: bold;
-}
-.week {
-	margin-bottom: 20px;
-	clear: both;
-	display: flex;
-	flex-wrap: wrap;
-}
-.heading {
-	flex: 100%;
-}
-.game {
-	background-color: #fff;
-	border: 1px solid #d4d4d4;
-	padding: 15px;
-	display: flex;
-	width: calc(33.33% - 4px);
-	margin: 2px;
-	align-items: center;
-}
-.teams {
-	width: 70%;
-}
-.date {
-	width: 30%;
-	text-align: center;
-}
-.fam {
-	flex: 100%;
-}
-table {
-	width: 100%;
-	border: 1px solid #d4d4d4;
-	background-color: #fff;
-}
-td {
-	padding: 7px;
-}
-td+td {
-	border-left: 1px dotted #d4d4d4;
-}
- tr+tr {
-	border-top: 1px solid #d4d4d4;
- } */
+	/* RESET */
+
+
+	html, body, p, ol, ul, li, dl, dt, dd, blockquote, figure, fieldset, legend, textarea, pre, iframe, hr, h1, h2, h3, h4, h5, h6, button, div, img {
+		margin: 0;
+		padding: 0;
+		display: block;
+		text-decoration: none;
+	}
+
+	a {
+		text-decoration: none;
+	}
+
+	.clear-fix {
+		content: "";
+		display: table;
+		clear: both;
+	}
+  
+  
+	/* END RESET */
+	
+	body {
+		background-color: rgb(241, 243, 245);
+		font-family: sans-serif;
+	}
+
+	.season-container {
+      background-color: rgb(241, 244, 245);
+      font-size: 14px;
+      box-shadow: 0 .3px 5px .9px rgba(0, 0, 0, 0.1);
+      max-width: 900px;
+      position: relative;
+      z-index: -1;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      overflow: auto;
+  }
+
+  .season-week {
+      background-image: linear-gradient(to right, black , rgba(166,12,49,1));
+      color: white;
+      padding: 15px 0;
+      padding-left: 20px;
+      clear: left;
+      border-bottom: 1.5px solid rgb(219, 219, 219);
+      margin-bottom: 20px;
+  }
+
+  .season-weekly-container {
+	border-bottom: 1.5px solid rgb(219, 219, 219);
+	padding: 0 5px;
+  }
+
+  .season-weekly-container:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .game-container {
+      font-family: 'Montserrat', sans-serif;
+      color: gray;
+      padding: 10px;
+      margin: 0 10px;
+      width: calc(33.33% - 20px);
+      float: left;
+      position: relative;
+      background-color: white;
+      margin-bottom: 20px;
+  }
+
+  .team {
+    padding: 8px 10px;
+    border-right: 1px solid rgb(224, 224, 224);
+    font-weight: 600;
+  }
+
+  .team img {
+    float: left;
+    position: relative;
+    bottom: 2px;
+    margin-right: 15px;
+    height: 20px;
+  }
+
+  .win-team {
+    color: rgb(166,12,49);
+  }
+
+  .team-rank {
+    margin-right: 5px;
+  }
+
+  .name {
+  
+  }
+
+  .score {
+    float: right;
+    padding-right: 10px;
+    font-weight: bold;
+  }
+
+  .win-score {
+    color: black;
+  }
+
+  .win-score::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent; 
+    border-right:5px solid rgb(166,12,49);
+    margin-left: 7px;
+    margin-top: 5px;
+  }
+
+  .team-container {
+    float: left;
+    width: 80%;
+  }
+
+  .date {
+    text-align: center;
+    width: 22.5%;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .game-state {
+    color: black;
+    padding-bottom: 4px;
+  }
 </style>
