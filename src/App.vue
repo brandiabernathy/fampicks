@@ -1,15 +1,18 @@
 <template>
 	<div id="app">
+		<TopBar />
 		<Weeks />
 	</div>
 </template>
 
 <script>
 import Weeks from './components/weeks.vue'
+import TopBar from './components/header.vue'
 
 export default {
 	name: 'App',
 	components: {
+		TopBar,
 		Weeks
 	}
 }
