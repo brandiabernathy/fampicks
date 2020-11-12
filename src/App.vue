@@ -19,6 +19,8 @@ export default {
 </script>
 
 <style>
+	@import url('https://fonts.googleapis.com/css2?family=Quantico:wght@400;700&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
 /* #app {
 	font-family: Avenir, Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;

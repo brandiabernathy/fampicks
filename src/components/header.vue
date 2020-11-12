@@ -1,10 +1,38 @@
-/* eslint-disable */
+
 
 <template>
 	<header>
         <div class="header-div">
-            <img src="../assets/2000px-SEC_logo_in_Alabama_colors.png" alt="">
-            <h1>FAM<span class="color-red">PICKS</span></h1>
+			<div class="header-left">
+				<img src="../assets/2000px-SEC_logo_in_Alabama_colors.png" alt="">
+				<h1>FAM<span class="color-red">PICKS</span></h1>
+			</div>
+			<div class="header-right">
+				<div class="fam">
+					<h2>Annie (John)</h2>
+					<p>28</p>
+				</div>
+				<div class="fam">
+					<h2>Carolyn</h2>
+					<p>26</p>
+				</div>
+				<div class="fam">
+					<h2>Rudy</h2>
+					<p>26</p>
+				</div>
+				<div class="fam">
+					<h2>Jenny</h2>
+					<p>26</p>
+				</div>
+				<div class="fam">
+					<h2>Blake</h2>
+					<p>16</p>
+				</div>
+				<div class="fam">
+					<h2>Brandi (Ocean)</h2>
+					<p class="lead">31</p>
+				</div>
+			</div>
         </div>
     </header>
 </template>
@@ -41,7 +69,7 @@
 
 	header {
       background-color: white;
-      height: 80px;
+      height: 100px;
       width: 100%;
       box-shadow: 0 .6px 5px 1px rgba(0,0,0,0.2);
       position: fixed;
@@ -65,13 +93,57 @@
     font-family: 'Quantico', sans-serif;
     font-size: 35px;
     color: rgb(0, 0, 0);
-    position: relative;
-    top: 50%;
+    position: absolute;
+	top: 50%;
     transform: translateY(-50%);
     margin-left: 95px;
   }
 
   header span.color-red {
-      color: rgb(166,12,49);
+    color: rgb(166,12,49);
   }
+
+  .header-left {
+	float: left;
+  }
+
+  .header-right {
+	font-family: 'Quantico', sans-serif;
+	display: flex;
+	position: absolute;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+  }
+
+  .fam + .fam {
+	border-left: 1px solid rgb(219, 219, 219);
+  }
+
+  .fam {
+	padding: 0 20px;
+  }
+
+  h2 + h2 {
+  }
+
+  .fam h2 {
+	text-align: center;
+	font-size: 20px;
+	letter-spacing: -.5px;
+	margin-bottom: 3px;
+  }
+
+  .fam p {
+	font-size: 20px;
+	text-align: center;
+	font-weight: 700;
+  }
+
+  .lead {
+	font-size: inherit;
+	color: rgb(166,12,49);
+	text-decoration-line: underline;
+  }
+
 </style>

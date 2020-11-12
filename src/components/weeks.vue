@@ -170,10 +170,10 @@ export default {
       background-color: rgb(241, 244, 245);
       font-size: 14px;
       box-shadow: 0 .3px 5px .9px rgba(0, 0, 0, 0.1);
-      max-width: 900px;
+      max-width: 950px;
       position: relative;
       z-index: -1;
-      top: 80px;
+      top: 100px;
       left: 50%;
       transform: translateX(-50%);
       overflow: auto;

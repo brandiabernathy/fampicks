@@ -23,9 +23,9 @@
     "vue-template-compiler": "^2.6.12"
   },
   "eslintConfig": {
-    "root": true,
+    "root": false,
     "env": {
-      "node": true
+      "node": false
     },
     "extends": [
       "plugin:vue/essential",
