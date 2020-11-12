@@ -5,22 +5,22 @@
 		<div v-for="(week, i) in weeks" :key="i">
 			<p class="season-week">Week {{ i }} of 16</p>
 			<div class="season-weekly-container">
-				<div class="game-container" v-for="games in week" :key="games.id">
+				<div class="game-container" v-for="game in week" :key="game.id">
 					<div class="team-container">
 						<div class="team">
-							<!-- <img src="./img/Kentucky.png" alt=""> -->
-							<span class="name" :class="{'win-team' : games.home_points > games.away_points}">{{ games.home_team }}</span>
-							<span class="score" :class="{'win-score' : games.home_points > games.away_points}">{{ games.home_points }}</span>
+							<img :src="require('../assets/' + game.away_team + '.png')">
+							<span class="name" :class="{'win-team' : game.home_points < game.away_points}">{{ game.away_team }}</span>
+							<span class="score" :class="{'win-score' : game.home_points < game.away_points}">{{ game.away_points }}</span>
 						</div>
 						<div class="team">
-							<!-- <img src="./img/Florida.png" alt=""> -->
-							<span class="name" :class="{'win-team' : games.home_points < games.away_points}">{{ games.away_team }}</span>
-							<span class="score" :class="{'win-score' : games.home_points < games.away_points}">{{ games.away_points }}</span>
+							<img :src="require('../assets/' + game.home_team + '.png')">
+							<span class="name" :class="{'win-team' : game.home_points > game.away_points}">{{ game.home_team }}</span>
+							<span class="score" :class="{'win-score' : game.home_points > game.away_points}">{{ game.home_points }}</span>
 						</div>
 					</div>
 					<div class="date">
 						<p class="game-state">Final</p>
-						<p>{{ dayjs(games.start_date).format('ddd, MM/D') }}</p>
+						<p>{{ dayjs(game.start_date).format('MM/D') }}</p>
 					</div>
 				</div>
 			</div>
@@ -71,6 +71,8 @@ export default {
 				this.games.push(item);
 				return acc;
 			}, {});
+
+			console.log('this.weeks', this.weeks);
 			// for(let i = 0; i < Object.keys(this.weeks).length; i++) {
 			// 	this.weeks[i + 4].picks = [];
 			// 	this.weeks[i + 4].picks.push(this.annie[i]);
