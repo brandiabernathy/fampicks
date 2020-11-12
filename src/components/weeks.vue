@@ -222,8 +222,7 @@ export default {
   .team img {
     float: left;
     position: relative;
-    bottom: 2px;
-    margin-right: 15px;
+    margin-right: 12px;
     height: 20px;
   }
 
