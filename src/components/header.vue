@@ -29,7 +29,7 @@
 					<p>16</p>
 				</div>
 				<div class="fam">
-					<h2 class="fam-lead">Brandi (Ocean)</h2>
+					<h2 class="fam-lead">Brandi/Ocean</h2>
 					<p class="score-lead">31</p>
 				</div>
 			</div>
