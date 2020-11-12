@@ -178,13 +178,14 @@ export default {
   }
 
   .season-week {
-      background-image: linear-gradient(to right, black , rgba(166,12,49,1));
-      color: white;
-      padding: 15px 0;
-      padding-left: 20px;
-      clear: left;
-      border-bottom: 1.5px solid rgb(219, 219, 219);
-      margin-bottom: 20px;
+	background-color: rgba(166,12,49,1);
+	color: white;
+	font-weight: 500;
+	padding: 15px 0;
+	padding-left: 20px;
+	clear: left;
+	border-bottom: 1.5px solid rgb(219, 219, 219);
+	margin-bottom: 20px;
   }
 
   .season-weekly-container {
