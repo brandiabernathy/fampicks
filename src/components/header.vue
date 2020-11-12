@@ -29,8 +29,8 @@
 					<p>16</p>
 				</div>
 				<div class="fam">
-					<h2>Brandi (Ocean)</h2>
-					<p class="lead">31</p>
+					<h2 class="fam-lead">Brandi (Ocean)</h2>
+					<p class="score-lead">31</p>
 				</div>
 			</div>
         </div>
@@ -122,6 +122,7 @@
 
   .fam {
 	padding: 0 20px;
+	color: gray;
   }
 
   h2 + h2 {
@@ -137,10 +138,18 @@
   .fam p {
 	font-size: 20px;
 	text-align: center;
+  }
+
+  .fam-lead {
+	color: black;
 	font-weight: 700;
   }
 
-  .lead {
+  .score-lead {
+	font-weight: 700;
+  }
+
+  .score-lead {
 	font-size: inherit;
 	color: rgb(166,12,49);
 	text-decoration-line: underline;
