@@ -125,9 +125,6 @@
 	color: gray;
   }
 
-  h2 + h2 {
-  }
-
   .fam h2 {
 	text-align: center;
 	font-size: 20px;
@@ -146,8 +143,8 @@
   }
 
   .score-lead {
+	height: 29px;
 	font-weight: 700;
-	font-size: inherit;
 	color: rgb(166,12,49);
 	border-bottom: 2px solid rgb(166,12,49);
 	position: relative;

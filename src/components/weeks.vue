@@ -169,6 +169,7 @@ export default {
 	.season-container {
       background-color: rgb(241, 244, 245);
       font-size: 14px;
+	  font-family: 'Montserrat', sans-serif;
       box-shadow: 0 .3px 5px .9px rgba(0, 0, 0, 0.1);
       max-width: 950px;
       position: relative;
@@ -180,18 +181,16 @@ export default {
   }
 
   .season-week {
-	background-color: rgba(166,12,49,1);
+	background-image: linear-gradient(to right, rgb(166,12,49), rgb(161, 12, 47), rgb(133, 13, 41), rgb(104, 9, 31));
 	color: white;
 	font-weight: 500;
 	padding: 15px 0;
 	padding-left: 20px;
 	clear: left;
-	border-bottom: 1.5px solid rgb(219, 219, 219);
-	margin-bottom: 20px;
+	margin-bottom: 10px;
   }
 
   .season-weekly-container {
-	border-bottom: 1.5px solid rgb(219, 219, 219);
 	padding: 0 5px;
   }
 
@@ -202,15 +201,14 @@ export default {
   }
 
   .game-container {
-      font-family: 'Montserrat', sans-serif;
-      color: gray;
-      padding: 10px;
-      margin: 0 10px;
-      width: calc(33.33% - 20px);
-      float: left;
-      position: relative;
-      background-color: white;
-      margin-bottom: 20px;
+	border: 1px solid rgba(219, 219, 219, .6);
+	color: gray;
+	padding: 10px;
+	margin: 0 5px 10px;
+	width: calc(33.33% - 10px);
+	float: left;
+	position: relative;
+	background-color: white;
   }
 
   .team {
@@ -231,10 +229,6 @@ export default {
 
   .team-rank {
     margin-right: 5px;
-  }
-
-  .name {
-  
   }
 
   .score {
