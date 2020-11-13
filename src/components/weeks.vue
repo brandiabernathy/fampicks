@@ -1,26 +1,30 @@
-/* eslint-disable */
 
 <template>
 	<div class="season-container">
-		<div v-for="(week, i) in weeks" :key="i">
-			<p class="season-week">Week {{ i }} of 16</p>
+		<div v-for="(week, i, index) in weeks" :key="i">
+			<p class="season-week">Week {{ index + 4 }} of 16</p>
 			<div class="season-weekly-container">
 				<div class="game-container" v-for="game in week" :key="game.id">
 					<div class="team-container">
 						<div class="team">
-							<img :src="require('../assets/' + game.away_team + '.png')">
-							<span class="name" :class="{'win-team' : game.home_points < game.away_points}">{{ game.away_team }}</span>
-							<span class="score" :class="{'win-score' : game.home_points < game.away_points}">{{ game.away_points }}</span>
+							<img :src="require('../assets/' + game.away.team + '.png')">
+							<span class="name" :class="{'win-team' : game.home.score < game.away.score}">
+								<span v-if="game.away.rank != 99 && game.away.rank != 0">{{ game.away.rank }}</span>
+								{{ game.away.team }}</span>
+							<span class="score" v-if="game.away.score != 0" :class="{'win-score' : game.home.score < game.away.score}">{{ game.away.score }}</span>
 						</div>
 						<div class="team">
-							<img :src="require('../assets/' + game.home_team + '.png')">
-							<span class="name" :class="{'win-team' : game.home_points > game.away_points}">{{ game.home_team }}</span>
-							<span class="score" :class="{'win-score' : game.home_points > game.away_points}">{{ game.home_points }}</span>
+							<img :src="require('../assets/' + game.home.team + '.png')">
+							<span class="name" :class="{'win-team' : game.home.score > game.away.score}">
+								<span v-if="game.home.rank != 99 && game.home.rank != 0" >{{ game.home.rank }}</span>
+								{{ game.home.team }}</span>
+							<span class="score" v-if="game.home.score != 0" :class="{'win-score' : game.home.score > game.away.score}">{{ game.home.score }}</span>
 						</div>
 					</div>
 					<div class="date">
-						<p class="game-state">Final</p>
-						<p>{{ dayjs(game.start_date).format('MM/D') }}</p>
+						<p>{{ game.date }}</p>
+						<p v-if="game.status.type.detail == 'Final'" class="game-state">Final</p>
+						<!-- <p v-else class="game-state"> {{ game.start_time }} </p> -->
 					</div>
 				</div>
 			</div>
@@ -44,6 +48,9 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
 
+var utc = require('dayjs/plugin/utc')
+dayjs.extend(utc)
+
 export default {
 	name: 'Week',
 	data() {
@@ -61,28 +68,62 @@ export default {
 	},
 	created() {
 		axios
-		.get('https://api.collegefootballdata.com/games?year=2020&seasonType=regular&conference=SEC')
-		.then(res => {
-			this.weeks = res.data.reduce((acc, item) => {
-				if (!acc[item.week]) {
-					acc[item.week] = [];
-				}
-				acc[item.week].push(item);
-				this.games.push(item);
-				return acc;
-			}, {});
+			.get('http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?limit=1000&dates=20200901-20201231&groups=8')
+			.then(res => {
+				console.log('res', res.data.events);
+				this.weeks = res.data.events
+				.filter(game => game.status.type.detail != 'Postponed')
+				.map(game => ({
+					id: game.id,
+					start_time: dayjs(game.date).utc(true).format('h:mma'),
+					date: dayjs(game.date).utc(true).format('MM/DD'),
+					status: game.status,
+					home: {
+						team: game.competitions[0].competitors[0].team.location,
+						score: game.competitions[0].competitors[0].score,
+						rank: game.competitions[0].competitors[0].curatedRank.current,
+					},
+					away: {
+						team: game.competitions[0].competitors[1].team.location,
+						score: game.competitions[0].competitors[1].score,
+						rank: game.competitions[0].competitors[1].curatedRank.current,
+					}
+				}))
+				.reduce((acc, item) => {
+					if (!acc[item.date]) {
+						acc[item.date] = [];
+					}
+					acc[item.date].push(item);
+					this.games.push(item);
+					return acc;
+				}, {});
+				console.log('weeks', this.weeks);
+			});
+		// axios
+		// .get('https://api.collegefootballdata.com/games?year=2020&seasonType=regular&conference=SEC')
+		// .then(res => {
+		// 	console.log('other res',res);
+			// this.weeks = res.data.reduce((acc, item) => {
+			// 	if (!acc[item.week]) {
+			// 		acc[item.week] = [];
+			// 	}
+			// 	acc[item.week].push(item);
+			// 	this.games.push(item);
+			// 	return acc;
+			// }, {});
 
-			console.log('this.weeks', this.weeks);
-			// for(let i = 0; i < Object.keys(this.weeks).length; i++) {
-			// 	this.weeks[i + 4].picks = [];
-			// 	this.weeks[i + 4].picks.push(this.annie[i]);
-			// 	this.weeks[i + 4].picks.push(this.carolyn[i]);
-			// 	this.weeks[i + 4].picks.push(this.rudy[i]);
-			// 	this.weeks[i + 4].picks.push(this.jenny[i]);
-			// 	this.weeks[i + 4].picks.push(this.blake[i]);
-			// 	this.weeks[i + 4].picks.push(this.abernathy[i]);
-			// }
-		});
+		// 	console.log('this.weeks', this.weeks);
+		// 	console.log('this.games', this.games);
+		// 	// for(let i = 0; i < Object.keys(this.weeks).length; i++) {
+		// 	// 	this.weeks[i + 4].picks = [];
+		// 	// 	this.weeks[i + 4].picks.push(this.annie[i]);
+		// 	// 	this.weeks[i + 4].picks.push(this.carolyn[i]);
+		// 	// 	this.weeks[i + 4].picks.push(this.rudy[i]);
+		// 	// 	this.weeks[i + 4].picks.push(this.jenny[i]);
+		// 	// 	this.weeks[i + 4].picks.push(this.blake[i]);
+		// 	// 	this.weeks[i + 4].picks.push(this.abernathy[i]);
+		// 	// }
+		// });
 		// this.annie[0] = ['Kentucky', 'Florida', 'Mississippi State*', 'Arkansas', 'Alabama', 'Tennessee', 'Texas A&M'];
 		// this.carolyn[0] = ['Auburn', 'Florida', 'LSU', 'Arkansas*', 'Alabama', 'South Carolina', 'Texas A&M'];
 		// this.rudy[0] = ['Kentucky', 'Florida', 'LSU', 'Arkansas*', 'Alabama', 'Tennessee', 'Texas A&M'];
@@ -134,7 +175,7 @@ export default {
 	},
 	methods: {
 	}
-  }
+}
 </script>
 
 <style>
@@ -170,7 +211,7 @@ export default {
       background-color: rgb(241, 244, 245);
       font-size: 14px;
       box-shadow: 0 .3px 5px .9px rgba(0, 0, 0, 0.1);
-      max-width: 950px;
+      max-width: 1050px;
       position: relative;
       z-index: -1;
       top: 100px;
