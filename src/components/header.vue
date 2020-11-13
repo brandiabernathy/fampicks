@@ -82,7 +82,7 @@
   }
 
   header img {
-    height: 60px;
+    height: 70px;
     position: absolute;
     left: 20px;
     top: 50%;
@@ -91,12 +91,12 @@
 
   header h1 {
     font-family: 'Quantico', sans-serif;
-    font-size: 35px;
+    font-size: 40px;
     color: rgb(0, 0, 0);
     position: absolute;
 	top: 50%;
     transform: translateY(-50%);
-    margin-left: 95px;
+    margin-left: 105px;
   }
 
   header span.color-red {
@@ -113,7 +113,7 @@
 	position: absolute;
 	right: 0;
 	top: 50%;
-	transform: translateY(-50%);
+	transform: translateY(-48%);
   }
 
   .fam + .fam {
@@ -147,12 +147,13 @@
 
   .score-lead {
 	font-weight: 700;
-  }
-
-  .score-lead {
 	font-size: inherit;
 	color: rgb(166,12,49);
-	text-decoration-line: underline;
+	border-bottom: 2px solid rgb(166,12,49);
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 25%;
   }
 
 </style>

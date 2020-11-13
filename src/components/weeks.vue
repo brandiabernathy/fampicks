@@ -220,10 +220,9 @@ export default {
   }
 
   .team img {
-    float: left;
-    position: relative;
+	display: inline;
     margin-right: 12px;
-    height: 20px;
+    height: 25px;
   }
 
   .win-team {
