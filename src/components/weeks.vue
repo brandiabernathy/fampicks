@@ -1,9 +1,8 @@
-/* eslint-disable */
 
 <template>
 	<div class="season-container">
 		<div v-for="(week, i) in weeks" :key="i">
-			<p class="season-week">Week {{ i }} of 16</p>
+			<p class="season-week">Week <span>{{ i }}</span> of <span class="season-week-total">16</span></p>
 			<div class="season-weekly-container">
 				<div class="game-container" v-for="game in week" :key="game.id">
 					<div class="team-container">
@@ -188,6 +187,14 @@ export default {
 	padding-left: 20px;
 	clear: left;
 	margin-bottom: 10px;
+  }
+
+  .season-week span {
+	font-weight: 700;
+  }
+
+  .season-week-total {
+	margin-left: 1px;
   }
 
   .season-weekly-container {
