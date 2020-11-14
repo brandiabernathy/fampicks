@@ -331,6 +331,10 @@ export default {
   }
 
   @media all and (max-width: 1100px) {
+	.season-container {
+		top: 80px;
+	}
+	
 	.season-week {
 		margin-bottom: 20px;
 	}
