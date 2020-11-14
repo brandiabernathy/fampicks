@@ -28,9 +28,12 @@
 					<h2>Blake</h2>
 					<p>16</p>
 				</div>
-				<div class="fam">
+				<div class="fam mobile-fam">
 					<h2 class="fam-lead">Brandi/Ocean</h2>
 					<p class="score-lead">31</p>
+				</div>
+				<div class="leader">
+					<p>*LEADER*</p>
 				</div>
 			</div>
         </div>
@@ -114,6 +117,9 @@
 	right: 0;
 	top: 50%;
 	transform: translateY(-48%);
+	height: 100%;
+	align-items: center;
+  	justify-content: center;
   }
 
   .fam + .fam {
@@ -121,8 +127,15 @@
   }
 
   .fam {
-	padding: 0 20px;
+	padding: 10px 20px;
 	color: gray;
+  }
+
+  .leader {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+	margin-top: 5px;
+	display: none;
   }
 
   .fam h2 {
@@ -151,6 +164,78 @@
 	left: 50%;
 	transform: translateX(-50%);
 	width: 25%;
+  }
+
+  @media all and (max-width: 1100px) {
+	header {
+		height: 80px;
+	}
+
+	header img {
+		height: 60px;
+	}
+
+	header h1 {
+		font-size: 36px;
+		margin-left: 95px;
+  	}
+
+	.fam {
+		padding: 0 15px;
+	}
+
+	.fam h2 {
+		font-size: 18px;
+		margin-bottom: -5px;
+	}
+
+	.leader {
+		margin-top: 2px;
+		font-size: 14px;
+	}
+  }
+
+  @media all and (max-width: 900px) {
+	.header-right {
+		flex-direction: column;
+	}
+	
+	.fam {
+		display: none;
+	}
+
+	.mobile-fam {
+		display: block;
+ 	 }
+	
+	.fam + .fam {
+		border: none;
+  	}
+
+	.leader {
+		display: block;
+	}
+  }
+
+  @media all and (max-width: 500px) {
+	header img {
+		height: 45px;
+	}
+
+	header h1 {
+		font-size: 28px;
+		margin-left: 82px;
+  	}
+
+	.fam h2 {
+		font-size: 16px;
+		margin-bottom: -5px;
+	}
+
+	.leader {
+		margin-top: 5px;
+		font-size: 12px;
+	}
   }
 
 </style>
