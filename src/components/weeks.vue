@@ -73,6 +73,7 @@ export default {
 				console.log('res', res.data.events);
 				this.weeks = res.data.events
 				.filter(game => game.status.type.detail != 'Postponed')
+				.sort((a, b) => a.date < b.date ? -1 : 1)
 				.map(game => ({
 					id: game.id,
 					start_time: dayjs(game.date).utc(true).format('h:mma'),
