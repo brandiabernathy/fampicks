@@ -7,6 +7,7 @@ const picks = {
 		['Alabama', 'Ole Miss*', 'Kentucky', 'South Carolina'],
 		['LSU', 'Ole Miss', 'Alabama', 'Texas A&M', 'Georgia', 'Florida'],
 		['Florida*', 'Vanderbilt', 'Texas A&M', 'Arkansas'],
+		['Kentucky', 'Arkansas*', 'Ole Miss'],
 	],
 	carolyn: [
 		['Auburn', 'Florida', 'LSU', 'Arkansas*', 'Alabama', 'South Carolina', 'Texas A&M'],
@@ -16,6 +17,7 @@ const picks = {
 		['Alabama', 'Ole Miss', 'Kentucky', 'South Carolina*'],
 		['Auburn', 'Vanderbilt', 'Alabama', 'Arkansas*', 'Kentucky', 'Florida'],
 		['Georgia', 'Vanderbilt', 'Texas A&M', 'Arkansas*'],
+		['Vanderbilt', 'Arkansas*', 'South Carolina'],
 	],
 	rudy: [
 		['Kentucky', 'Florida', 'LSU', 'Arkansas*', 'Alabama', 'Tennessee', 'Texas A&M'],
@@ -25,6 +27,7 @@ const picks = {
 		['Alabama', 'Ole Miss*', 'Kentucky', 'South Carolina'],
 		['LSU', 'Ole Miss', 'Alabama', 'Arkansas*', 'Georgia', 'Missouri'],
 		['Georgia', 'Mississippi State', 'Texas A&M', 'Arkansas*'],
+		['Kentucky', 'Arkansas*', 'Ole Miss'],
 	],
 	jenny: [
 		['Auburn', 'Ole Miss', 'LSU', 'Arkansas*', 'Missouri', 'South Carolina', 'Texas A&M'],
@@ -34,6 +37,7 @@ const picks = {
 		['Tennessee', 'Ole Miss*', 'Missouri', 'LSU'],
 		['Auburn*', 'Vanderbilt', 'Alabama', 'Texas A&M', 'Kentucky', 'Florida'],
 		['Florida', 'Mississippi State', 'South Carolina', 'Arkansas*'],
+		['Kentucky', 'Florida', 'Ole Miss'],
 	],
 	blake: [
 		['Kentucky*', 'Florida', 'LSU', 'Georgia', 'Alabama', 'South Carolina', 'Texas A&M'],
@@ -43,6 +47,7 @@ const picks = {
 		['', '', '', ''],
 		['Auburn', 'Ole Miss', 'Alabama', 'Arkansas', 'Georgia', 'Missouri*'],
 		['', '', '', ''],
+		['Kentucky', 'Arkansas*', 'Ole Miss'],
 	],
 	abernathy: [
 		['Auburn', 'Ole Miss*', 'LSU', 'Georgia', 'Alabama', 'Tennessee', 'Texas A&M'],
@@ -52,5 +57,6 @@ const picks = {
 		['Alabama', 'Auburn', 'Missouri*', 'South Carolina'],
 		['Auburn*', 'Ole Miss', 'Alabama', 'Texas A&M', 'Georiga', 'Missouri'],
 		['Georgia', 'Mississippi State', 'Texas A&M', 'Arkansas*'],
+		['Kentucky', 'Florida', 'Ole Miss'],
 	]
 }

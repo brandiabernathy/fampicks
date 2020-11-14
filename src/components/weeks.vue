@@ -28,19 +28,22 @@
 					</div>
 				</div>
 			</div>
+			<div class="fam-picks">
+				<table>
+					<!-- <tr>
+						<th colspan="">
+						</th>
+						<th>Week Pts</th>
+						<th>Total Pts</th>
+					</tr> -->
+					<tr v-for="(picks, j) in week.picks" :key="j">
+						<td v-for="(pick, n) in picks" :key="n">
+							{{ pick }}
+						</td>
+					</tr>
+				</table>
+			</div>
 		</div>
-
-		<!-- <div class="fam">
-			<table>
-				<tr v-for="(picks, j) in week.picks" :key="j">
-					<td v-for="(pick, n) in picks" :key="n">
-						{{ pick }}
-					</td>
-					<td> week pts </td>
-					<td> total pts </td>
-				</tr>
-			</table>
-		</div> -->
 	</div>
 </template>
 
@@ -73,6 +76,7 @@ export default {
 				console.log('res', res.data.events);
 				this.weeks = res.data.events
 				.filter(game => game.status.type.detail != 'Postponed')
+				.sort((a, b) => a.date < b.date ? -1 : 1)
 				.map(game => ({
 					id: game.id,
 					start_time: dayjs(game.date).utc(true).format('h:mma'),
@@ -94,84 +98,113 @@ export default {
 						acc[item.date] = [];
 					}
 					acc[item.date].push(item);
-					this.games.push(item);
 					return acc;
 				}, {});
-				console.log('weeks', this.weeks);
+
+				for(let i = 0; i < Object.keys(this.weeks).length; i++) {
+					let w;
+					switch (i) {
+						case 0:
+							w = '09/26';
+							break;
+						case 1:
+							w = '10/03'
+							break;
+						case 2:
+							w = '10/10'
+							break;
+						case 3:
+							w = '10/17'
+							break;
+						case 4:
+							w = '10/24'
+							break;
+						case 5:
+							w = '10/31'
+							break;
+						case 6:
+							w = '11/07'
+							break;
+						case 7:
+							w = '11/14'
+							break;
+						case 8:
+							w = '11/21'
+							break;
+						case 9:
+							w = '11/27'
+							break;
+						case 10:
+							w = '12/04'
+							break;
+						case 11:
+							w = '12/11'
+							break;
+					}
+					this.weeks[w].picks = [];
+					this.weeks[w].picks.push(this.annie[i]);
+					this.weeks[w].picks.push(this.carolyn[i]);
+					this.weeks[w].picks.push(this.rudy[i]);
+					this.weeks[w].picks.push(this.jenny[i]);
+					this.weeks[w].picks.push(this.blake[i]);
+					this.weeks[w].picks.push(this.abernathy[i]);
+				}
 			});
-		// axios
-		// .get('https://api.collegefootballdata.com/games?year=2020&seasonType=regular&conference=SEC')
-		// .then(res => {
-		// 	console.log('other res',res);
-			// this.weeks = res.data.reduce((acc, item) => {
-			// 	if (!acc[item.week]) {
-			// 		acc[item.week] = [];
-			// 	}
-			// 	acc[item.week].push(item);
-			// 	this.games.push(item);
-			// 	return acc;
-			// }, {});
+		this.annie[0] = ['Kentucky', 'Florida', 'Mississippi State*', 'Arkansas', 'Alabama', 'Tennessee', 'Texas A&M', 6, 6];
+		this.carolyn[0] = ['Auburn', 'Florida', 'LSU', 'Arkansas*', 'Alabama', 'South Carolina', 'Texas A&M', 4, 4];
+		this.rudy[0] = ['Kentucky', 'Florida', 'LSU', 'Arkansas*', 'Alabama', 'Tennessee', 'Texas A&M', 4, 4];
+		this.jenny[0] = ['Auburn', 'Ole Miss', 'LSU', 'Arkansas*', 'Missouri', 'South Carolina', 'Texas A&M', 2, 2];
+		this.blake[0] = ['Kentucky*', 'Florida', 'LSU', 'Georgia', 'Alabama', 'South Carolina', 'Texas A&M', 4, 4];
+		this.abernathy[0] = ['Auburn', 'Ole Miss*', 'LSU', 'Georgia', 'Alabama', 'Tennessee', 'Texas A&M', 5, 5];
 
-		// 	console.log('this.weeks', this.weeks);
-		// 	console.log('this.games', this.games);
-		// 	// for(let i = 0; i < Object.keys(this.weeks).length; i++) {
-		// 	// 	this.weeks[i + 4].picks = [];
-		// 	// 	this.weeks[i + 4].picks.push(this.annie[i]);
-		// 	// 	this.weeks[i + 4].picks.push(this.carolyn[i]);
-		// 	// 	this.weeks[i + 4].picks.push(this.rudy[i]);
-		// 	// 	this.weeks[i + 4].picks.push(this.jenny[i]);
-		// 	// 	this.weeks[i + 4].picks.push(this.blake[i]);
-		// 	// 	this.weeks[i + 4].picks.push(this.abernathy[i]);
-		// 	// }
-		// });
-		// this.annie[0] = ['Kentucky', 'Florida', 'Mississippi State*', 'Arkansas', 'Alabama', 'Tennessee', 'Texas A&M'];
-		// this.carolyn[0] = ['Auburn', 'Florida', 'LSU', 'Arkansas*', 'Alabama', 'South Carolina', 'Texas A&M'];
-		// this.rudy[0] = ['Kentucky', 'Florida', 'LSU', 'Arkansas*', 'Alabama', 'Tennessee', 'Texas A&M'];
-		// this.jenny[0] = ['Auburn', 'Ole Miss', 'LSU', 'Arkansas*', 'Missouri', 'South Carolina', 'Texas A&M'];
-		// this.blake[0] = ['Kentucky*', 'Florida', 'LSU', 'Georgia', 'Alabama', 'South Carolina', 'Texas A&M'];
-		// this.abernathy[0] = ['Auburn', 'Ole Miss*', 'LSU', 'Georgia', 'Alabama', 'Tennessee', 'Texas A&M'];
+		this.annie[1] = ['Florida', 'Tennessee', 'Alabama', 'Kentucky*', 'Arkansas', 'Georgia', 'LSU', 6, 12];
+		this.carolyn[1] = ['Florida', 'Tennessee', 'Alabama', 'Ole Miss', 'Arkansas*', 'Auburn', 'LSU', 7, 11];
+		this.rudy[1] = ['Florida', 'Tennessee', 'Alabama', 'Kentucky', 'Arkansas*', 'Auburn', 'LSU', 6, 10];
+		this.jenny[1] = ['Florida', 'Tennessee', 'Alabama', 'Kentucky', 'Mississippi State', 'Georgia', 'Vanderbilt*', 4, 6];
+		this.blake[1] = ['Florida', 'Tennessee', 'Alabama', 'Kentucky*', 'Mississippi State', 'Auburn', 'LSU', 4, 8];
+		this.abernathy[1] = ['Florida', 'Tennessee', 'Alabama', 'Ole Miss', 'Mississippi State', 'Auburn*', 'LSU', 5, 10];
 
-		// this.annie[1] = ['Florida', 'Tennessee', 'Alabama', 'Kentucky*', 'Arkansas', 'Georgia', 'LSU'];
-		// this.carolyn[1] = ['Florida', 'Tennessee', 'Alabama', 'Ole Miss', 'Arkansas*', 'Auburn', 'LSU'];
-		// this.rudy[1] = ['Florida', 'Tennessee', 'Alabama', 'Kentucky', 'Arkansas*', 'Auburn', 'LSU'];
-		// this.jenny[1] = ['Florida', 'Tennessee', 'Alabama', 'Kentucky', 'Mississippi State', 'Georgia', 'Vanderbilt*'];
-		// this.blake[1] = ['Florida', 'Tennessee', 'Alabama', 'Kentucky*', 'Mississippi State', 'Auburn', 'LSU'];
-		// this.abernathy[1] = ['Florida', 'Tennessee', 'Alabama', 'Ole Miss', 'Mississippi State', 'Auburn*', 'LSU'];
+		this.annie[2] = ['Alabama', 'Arkansas*', 'Florida', 'Georgia', 'Kentucky', 'LSU', 'Vanderbilt', 3, 15];
+		this.carolyn[2] = ['Alabama', 'Arkansas*', 'Florida', 'Georgia', 'Kentucky', 'LSU', 'South Carolina', 4, 15];
+		this.rudy[2] = ['Alabama', 'Arkansas*', 'Florida', 'Georgia', 'Mississippi State', 'LSU', 'Vanderbilt', 3, 13];
+		this.jenny[2] = ['Ole Miss', 'Auburn', 'Texas A&M*', 'Georgia', 'Kentucky', 'LSU', 'Vanderbilt', 5, 11];
+		this.blake[2] = ['Alabama', 'Auburn', '', 'Tennessee*', 'Kentucky', 'LSU', 'South Carolina', 4, 12];
+		this.abernathy[2] = ['Alabama', 'Auburn', 'Florida', 'Georgia', 'Kentucky', 'LSU', 'Vanderbilt*', 4, 14];
 
-		// this.annie[2] = ['Alabama', 'Arkansas*', 'Florida', 'Georgia', 'Kentucky', 'LSU', 'Vanderbilt'];
-		// this.carolyn[2] = ['Alabama', 'Arkansas*', 'Florida', 'Georgia', 'Kentucky', 'LSU', 'South Carolina'];
-		// this.rudy[2] = ['Alabama', 'Arkansas*', 'Florida', 'Georgia', 'Mississippi State', 'LSU', 'Vanderbilt'];
-		// this.jenny[2] = ['Ole Miss', 'Auburn', 'Texas A&M*', 'Georgia', 'Kentucky', 'LSU', 'Vanderbilt'];
-		// this.blake[2] = ['Alabama', 'Auburn', '', 'Tennessee*', 'Kentucky', 'LSU', 'South Carolina'];
-		// this.abernathy[2] = ['Alabama', 'Auburn', 'Florida', 'Georgia', 'Kentucky', 'LSU', 'Vanderbilt*'];
+		this.annie[3] = ['Georgia', 'Ole Miss', 'South Carolina*', 'Tennessee', 'Texas A&M', 3, 18];
+		this.carolyn[3] = ['Alabama', 'Arkansas*', 'Auburn', 'Kentucky', 'Mississippi State', 4, 19];
+		this.rudy[3] = ['Alabama', 'Arkansas', 'South Carolina*', 'Tennessee', 'Texas A&M', 5, 18];
+		this.jenny[3] = ['Alabama', 'Arkansas*', 'South Carolina', 'Tennessee', 'Mississippi State', 4, 15];
+		this.blake[3] = ['Georgia', 'Ole Miss', 'Auburn', 'Tennessee', 'Mississippi State*', 0, 12];
+		this.abernathy[3] = ['Georgia', 'Arkansas*', 'Auburn', 'Tennessee', 'Texas A&M', 3, 17];
 
-		// this.annie[3] = ['Georgia', 'Ole Miss', 'South Carolina*', 'Tennessee', 'Texas A&M'];
-		// this.carolyn[3] = ['Alabama', 'Arkansas*', 'Auburn', 'Kentucky', 'Mississippi State'];
-		// this.rudy[3] = ['Alabama', 'Arkansas', 'South Carolina*', 'Tennessee', 'Texas A&M'];
-		// this.jenny[3] = ['Alabama', 'Arkansas*', 'South Carolina', 'Tennessee', 'Mississippi State'];
-		// this.blake[3] = ['Georgia', 'Ole Miss', 'Auburn', 'Tennessee', 'Mississippi State*'];
-		// this.abernathy[3] = ['Georgia', 'Arkansas*', 'Auburn', 'Tennessee', 'Texas A&M'];
+		this.annie[4] = ['Alabama', 'Ole Miss*', 'Kentucky', 'South Carolina', 1, 19];
+		this.carolyn[4] = ['Alabama', 'Ole Miss', 'Kentucky', 'South Carolina*', 1, 20];
+		this.rudy[4] = ['Alabama', 'Ole Miss*', 'Kentucky', 'South Carolina', 1, 19];
+		this.jenny[4] = ['Tennessee', 'Ole Miss*', 'Missouri', 'LSU', 2, 17];
+		this.blake[4] = ['', '', '', '', 0 , 12];
+		this.abernathy[4] = ['Alabama', 'Auburn', 'Missouri*', 'South Carolina', 4, 21];
 
-		// this.annie[4] = ['Alabama', 'Ole Miss*', 'Kentucky', 'South Carolina'];
-		// this.carolyn[4] = ['Alabama', 'Ole Miss', 'Kentucky', 'South Carolina*'];
-		// this.rudy[4] = ['Alabama', 'Ole Miss*', 'Kentucky', 'South Carolina'];
-		// this.jenny[4] = ['Tennessee', 'Ole Miss*', 'Missouri', 'LSU'];
-		// this.blake[4] = ['', '', '', ''];
-		// this.abernathy[4] = ['Alabama', 'Auburn', 'Missouri*', 'South Carolina'];
+		this.annie[5] = ['LSU', 'Ole Miss', 'Alabama', 'Texas A&M', 'Georgia', 'Florida', 5, 24];
+		this.carolyn[5] = ['Auburn', 'Vanderbilt', 'Alabama', 'Arkansas*', 'Kentucky', 'Florida', 3, 23];
+		this.rudy[5] = ['LSU', 'Ole Miss', 'Alabama', 'Arkansas*', 'Georgia', 'Missouri', 3, 22];
+		this.jenny[5] = ['Auburn*', 'Vanderbilt', 'Alabama', 'Texas A&M', 'Kentucky', 'Florida', 5, 22];
+		this.blake[5] = ['Auburn', 'Ole Miss', 'Alabama', 'Arkansas', 'Georgia', 'Missouri*', 4, 16];
+		this.abernathy[5] = ['Auburn*', 'Ole Miss', 'Alabama', 'Texas A&M', 'Georiga', 'Missouri', 6, 27];
 
-		// this.annie[5] = ['LSU', 'Ole Miss', 'Alabama', 'Texas A&M', 'Georgia', 'Florida'];
-		// this.carolyn[5] = ['Auburn', 'Vanderbilt', 'Alabama', 'Arkansas*', 'Kentucky', 'Florida'];
-		// this.rudy[5] = ['LSU', 'Ole Miss', 'Alabama', 'Arkansas*', 'Georgia', 'Missouri'];
-		// this.jenny[5] = ['Auburn*', 'Vanderbilt', 'Alabama', 'Texas A&M', 'Kentucky', 'Florida'];
-		// this.blake[5] = ['Auburn', 'Ole Miss', 'Alabama', 'Arkansas', 'Georgia', 'Missouri*'];
-		// this.abernathy[5] = ['Auburn*', 'Ole Miss', 'Alabama', 'Texas A&M', 'Georiga', 'Missouri'];
+		this.annie[6] = ['Florida*', 'Vanderbilt', 'Texas A&M', 'Arkansas', 4, 28];
+		this.carolyn[6] = ['Georgia', 'Vanderbilt', 'Texas A&M', 'Arkansas*', 3, 26];
+		this.rudy[6] = ['Georgia', 'Mississippi State', 'Texas A&M', 'Arkansas*', 4, 26];
+		this.jenny[6] = ['Florida', 'Mississippi State', 'South Carolina', 'Arkansas*', 4, 26];
+		this.blake[6] = ['', '', '', '', 0, 16];
+		this.abernathy[6] = ['Georgia', 'Mississippi State', 'Texas A&M', 'Arkansas*', 4, 31];
 
-		// this.annie[6] = ['Florida*', 'Vanderbilt', 'Texas A&M', 'Arkansas'];
-		// this.carolyn[6] = ['Georgia', 'Vanderbilt', 'Texas A&M', 'Arkansas*'];
-		// this.rudy[6] = ['Georgia', 'Mississippi State', 'Texas A&M', 'Arkansas*'];
-		// this.jenny[6] = ['Florida', 'Mississippi State', 'South Carolina', 'Arkansas*'];
-		// this.blake[6] = ['', '', '', ''];
-		// this.abernathy[6] = ['Georgia', 'Mississippi State', 'Texas A&M', 'Arkansas*'];
+		this.annie[7] = ['Kentucky', 'Arkansas*', 'Ole Miss'];
+		this.carolyn[7] = ['Vanderbilt', 'Arkansas*', 'South Carolina'];
+		this.rudy[7] = ['Kentucky', 'Arkansas*', 'Ole Miss'];
+		this.jenny[7] = ['Kentucky', 'Florida', 'Ole Miss'];
+		this.blake[7] = ['Kentucky', 'Arkansas*', 'Ole Miss'];
+		this.abernathy[7] = ['Kentucky', 'Florida', 'Ole Miss'];
 	},
 	methods: {
 	}
@@ -319,5 +352,26 @@ export default {
   .game-state {
     color: black;
     padding-bottom: 4px;
+  }
+
+  table {
+	  display: table;
+	  width: calc(100% - 20px);
+	  background: #fff;
+	  border: 1px solid rgba(219, 219, 219, .6);
+	  margin: 0 10px 10px;
+  }
+
+  td {
+	padding: 7px;
+    vertical-align: top;
+  }
+
+  td+td {
+	  border-left: 1px dotted rgba(219, 219, 219, .6);
+  }
+
+  tr+tr {
+	border-top: 1px solid rgba(219, 219, 219, .6);
   }
 </style>
