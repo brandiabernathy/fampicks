@@ -9,14 +9,14 @@
 						<div class="team">
 							<img :src="require('../assets/' + game.away.team + '.png')">
 							<span class="name" :class="{'win-team' : game.home.score < game.away.score}">
-								<span v-if="game.away.rank != 99 && game.away.rank != 0">{{ game.away.rank }}</span>
+								<span class="rank" v-if="game.away.rank != 99 && game.away.rank != 0">{{ game.away.rank }}</span>
 								{{ game.away.team }}</span>
 							<span class="score" v-if="game.away.score != 0" :class="{'win-score' : game.home.score < game.away.score}">{{ game.away.score }}</span>
 						</div>
 						<div class="team">
 							<img :src="require('../assets/' + game.home.team + '.png')">
 							<span class="name" :class="{'win-team' : game.home.score > game.away.score}">
-								<span v-if="game.home.rank != 99 && game.home.rank != 0" >{{ game.home.rank }}</span>
+								<span class="rank" v-if="game.home.rank != 99 && game.home.rank != 0" >{{ game.home.rank }}</span>
 								{{ game.home.team }}</span>
 							<span class="score" v-if="game.home.score != 0" :class="{'win-score' : game.home.score > game.away.score}">{{ game.home.score }}</span>
 						</div>
@@ -300,21 +300,30 @@ export default {
   }
 
   .team img {
-	display: inline;
-    margin-right: 12px;
-    height: 25px;
+	display: inline-block;
+	vertical-align: middle;
+    margin-right: 15px;
+    width: 25px;
+  }
+
+  .team .name {
+	display: inline-block;
+	vertical-align: middle;
   }
 
   .win-team {
     color: rgb(166,12,49);
   }
 
-  .team-rank {
-    margin-right: 5px;
+  .rank {
+    margin-right: 1px;
+	color: gray;
+	font-weight: 500;
   }
 
   .score {
     float: right;
+	margin-top: 2px;
     padding-right: 10px;
     font-weight: bold;
   }
@@ -374,4 +383,77 @@ export default {
   tr+tr {
 	border-top: 1px solid rgba(219, 219, 219, .6);
   }
+  @media all and (max-width: 1100px) {
+	.season-container {
+		top: 80px;
+	}
+	
+	.season-week {
+		margin-bottom: 20px;
+	}
+
+	.team {
+		padding: 8px 10px;
+		border-right: 1px solid rgb(224, 224, 224);
+		font-weight: 600;
+	}
+
+	.team img {
+		display: inline;
+		margin-right: 12px;
+		height: 25px;
+	}
+  }
+
+	@media all and (max-width: 970px) {
+		.game-container {
+			padding: 10px;
+			margin: 0 10px 20px;
+			width: calc(50% - 20px);
+		}
+	}
+
+	@media all and (max-width: 700px) {
+		.season-week {
+			margin-bottom: 10px;
+		}
+
+		.game-container {
+			padding: 10px;
+			margin: 0 5px 10px;
+			width: calc(50% - 10px);
+		}
+
+		.team {
+			padding: 6px 8px;
+			font-size: 12px;
+		}
+
+		.team img {
+			display: inline;
+			margin-right: 12px;
+			height: 20px;
+		}
+	}
+
+	@media all and (max-width: 580px) {
+		.season-week {
+			margin-bottom: 20px;
+		}
+
+		.game-container {
+			padding: 15px;
+			margin: 0 10px 20px;
+			width: calc(100% - 20px);
+		}
+
+		.team {
+			padding: 8px 10px;
+			font-size: 14px;
+		}
+
+		.team img {
+			height: 25px;
+		}
+	}
 </style>
