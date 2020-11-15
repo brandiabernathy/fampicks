@@ -185,7 +185,7 @@
 	}
 
 	.fam h2 {
-		font-size: 18px;
+		font-size: 16px;
 		margin-bottom: -5px;
 	}
 
@@ -198,6 +198,7 @@
   @media all and (max-width: 900px) {
 	.header-right {
 		flex-direction: column;
+		margin-right: 5px;
 	}
 	
 	.fam {
