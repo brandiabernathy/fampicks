@@ -30,12 +30,13 @@
 			</div>
 			<div class="fam-picks">
 				<table>
-					<!-- <tr>
-						<th colspan="">
+					<tr>
+						<th>
+							Family picks
 						</th>
-						<th>Week Pts</th>
-						<th>Total Pts</th>
-					</tr> -->
+						<!-- <th>Week Pts</th>
+						<th>Total Pts</th> -->
+					</tr>
 					<tr v-for="(picks, j) in week.picks" :key="j">
 						<td v-for="(pick, n) in picks" :key="n">
 							{{ pick }}
@@ -150,12 +151,12 @@ export default {
 					this.weeks[w].picks.push(this.abernathy[i]);
 				}
 			});
-		this.annie[0] = ['Kentucky', 'Florida', 'Mississippi State*', 'Arkansas', 'Alabama', 'Tennessee', 'Texas A&M', 6, 6];
-		this.carolyn[0] = ['Auburn', 'Florida', 'LSU', 'Arkansas*', 'Alabama', 'South Carolina', 'Texas A&M', 4, 4];
-		this.rudy[0] = ['Kentucky', 'Florida', 'LSU', 'Arkansas*', 'Alabama', 'Tennessee', 'Texas A&M', 4, 4];
-		this.jenny[0] = ['Auburn', 'Ole Miss', 'LSU', 'Arkansas*', 'Missouri', 'South Carolina', 'Texas A&M', 2, 2];
-		this.blake[0] = ['Kentucky*', 'Florida', 'LSU', 'Georgia', 'Alabama', 'South Carolina', 'Texas A&M', 4, 4];
-		this.abernathy[0] = ['Auburn', 'Ole Miss*', 'LSU', 'Georgia', 'Alabama', 'Tennessee', 'Texas A&M', 5, 5];
+		this.annie[0] = ['Annie (John)', 'Kentucky', 'Florida', 'Mississippi State*', 'Arkansas', 'Alabama', 'Tennessee', 'Texas A&M', 6, 6];
+		this.carolyn[0] = ['Carolyn', 'Auburn', 'Florida', 'LSU', 'Arkansas*', 'Alabama', 'South Carolina', 'Texas A&M', 4, 4];
+		this.rudy[0] = ['Rudy', 'Kentucky', 'Florida', 'LSU', 'Arkansas*', 'Alabama', 'Tennessee', 'Texas A&M', 4, 4];
+		this.jenny[0] = ['Jenny', 'Auburn', 'Ole Miss', 'LSU', 'Arkansas*', 'Missouri', 'South Carolina', 'Texas A&M', 2, 2];
+		this.blake[0] = ['Blake', 'Kentucky*', 'Florida', 'LSU', 'Georgia', 'Alabama', 'South Carolina', 'Texas A&M', 4, 4];
+		this.abernathy[0] = ['Brandi/Ocean', 'Auburn', 'Ole Miss*', 'LSU', 'Georgia', 'Alabama', 'Tennessee', 'Texas A&M', 5, 5];
 
 		this.annie[1] = ['Florida', 'Tennessee', 'Alabama', 'Kentucky*', 'Arkansas', 'Georgia', 'LSU', 6, 12];
 		this.carolyn[1] = ['Florida', 'Tennessee', 'Alabama', 'Ole Miss', 'Arkansas*', 'Auburn', 'LSU', 7, 11];
