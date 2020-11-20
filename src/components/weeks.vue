@@ -74,34 +74,43 @@ export default {
 	created() {
 		axios
 			.get('http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?limit=1000&dates=20200901-20201231&groups=8')
-			.then(res => {
-				console.log('res', res.data.events);
-				this.weeks = res.data.events
-				.filter(game => game.status.type.detail != 'Postponed')
-				.sort((a, b) => a.date < b.date ? -1 : 1)
-				.map(game => ({
-					id: game.id,
-					start_time: dayjs(game.date).utc(true).format('h:mma'),
-					date: dayjs(game.date).utc(true).format('MM/DD'),
-					status: game.status,
-					home: {
-						team: game.competitions[0].competitors[0].team.location,
-						score: game.competitions[0].competitors[0].score,
-						rank: game.competitions[0].competitors[0].curatedRank.current,
-					},
-					away: {
-						team: game.competitions[0].competitors[1].team.location,
-						score: game.competitions[0].competitors[1].score,
-						rank: game.competitions[0].competitors[1].curatedRank.current,
-					}
-				}))
-				.reduce((acc, item) => {
-					if (!acc[item.date]) {
-						acc[item.date] = [];
-					}
-					acc[item.date].push(item);
-					return acc;
-				}, {});
+			.then(response => {
+				console.log('response', response);
+
+				// we are storing the response data from the ESPN API as 'response'
+
+				// we want information about the games, which is found in
+				// response.data.events (you can use the console output to view this)
+
+				// using response.data.events (an array)
+				// use the javascript .filter method to filter out the games that are Postponed
+				// use the javascript .sort method to sort the games by their date
+				// use the javascript .map method to only retrieve the information we want
+				// so we don't have to sift through all of the other info we aren't using
+
+				// the game info we want is:
+				// * id
+				// * date
+				// * status
+				// * home team, home score, home rank
+				// * away team, away score, away rank
+
+				// use this code and fill in the info in the parenthesis
+				// this.weeks = response.data.events
+				// .filter()
+				// .sort()
+				// .map()
+
+				// uncomment this .reduce method. i am not sure how to explain it so i won't make
+				// you write it yourself
+
+				// .reduce((acc, item) => {
+				// 	if (!acc[item.date]) {
+				// 		acc[item.date] = [];
+				// 	}
+				// 	acc[item.date].push(item);
+				// 	return acc;
+				// }, {});
 
 				for(let i = 0; i < Object.keys(this.weeks).length; i++) {
 					let w;
