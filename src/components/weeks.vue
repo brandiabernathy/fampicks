@@ -31,7 +31,7 @@
 			<div class="fam-picks">
 				<table>
 					<tr class="table-header">
-						<th class="table-header">
+						<th colspan="12" class="table-header">
 							Weekly Picks
 						</th>
 						<!-- <th>Week Pts</th>
@@ -43,6 +43,7 @@
 						</td>
 					</tr>
 				</table>
+				<hr>
 			</div>
 		</div>
 	</div>
@@ -216,7 +217,7 @@ export default {
 	/* RESET */
 
 
-	html, body, p, ol, ul, li, dl, dt, dd, blockquote, figure, fieldset, legend, textarea, pre, iframe, hr, h1, h2, h3, h4, h5, h6, button, div, img {
+	html, body, p, ol, ul, li, dl, dt, dd, blockquote, figure, fieldset, legend, textarea, pre, iframe, h1, h2, h3, h4, h5, h6, button, div, img {
 		margin: 0;
 		padding: 0;
 		display: block;
@@ -369,18 +370,28 @@ export default {
 	  width: calc(100% - 20px);
 	  background: #fff;
 	  border: 1px solid rgba(219, 219, 219, .6);
-	  margin: 0 10px 10px;
+	  margin: 0 10px 30px;
+  }
+
+  hr {
+	background-color: rgba(219, 219, 219, 0.452);
+	border-top: 2px solid rgba(219, 219, 219, .6);
+	border-bottom: 2px solid rgba(219, 219, 219, .6);
+	margin-top: 0;
+	margin-bottom: 30px;
+	height: 2px;
   }
 
   th {
-	padding: 10px;
+	color: white;
+	padding:20px;
 	font-weight: 700;
+	background-image: linear-gradient(to right, rgb(32, 3, 10), rgb(58, 5, 17), rgb(82, 7, 25), rgb(104, 9, 31));
   }
 
 
   td {
 	padding: 10px 7px;
-    vertical-align: top;
 	text-align: center;
   }
 
@@ -388,6 +399,7 @@ export default {
 	  font-weight: 500;
 	  text-align: left;
 	  border-right: 1px solid rgba(190, 190, 190, 0.6);
+	  padding-left: 20px;
   }
 
   td:last-child, td:nth-last-child(2) {
@@ -412,10 +424,6 @@ export default {
 	.season-container {
 		top: 80px;
 	}
-	
-	.season-week {
-		margin-bottom: 20px;
-	}
 
 	.team {
 		padding: 8px 10px;
@@ -431,10 +439,19 @@ export default {
   }
 
 	@media all and (max-width: 970px) {
+		.season-week {
+			margin-bottom: 20px;
+		}
+
 		.game-container {
 			padding: 10px;
 			margin: 0 10px 20px;
 			width: calc(50% - 20px);
+		}
+
+		table {
+			width: calc(100% - 30px);
+			margin: 0 15px 30px;
 		}
 	}
 
