@@ -31,7 +31,7 @@
 			<div class="fam-picks">
 				<table>
 					<tr class="table-header">
-						<th colspan="12" class="table-header">
+						<th colspan="10" class="table-header">
 							Weekly Picks
 						</th>
 						<!-- <th>Week Pts</th>
@@ -377,16 +377,16 @@ export default {
 	background-color: rgba(219, 219, 219, 0.452);
 	border-top: 2px solid rgba(219, 219, 219, .6);
 	border-bottom: 2px solid rgba(219, 219, 219, .6);
-	margin-top: 0;
-	margin-bottom: 30px;
+	margin-top: 0 !important;
+	margin-bottom: 30px !important;
 	height: 2px;
   }
 
   th {
-	color: white;
-	padding:20px;
-	font-weight: 700;
-	background-image: linear-gradient(to right, rgb(32, 3, 10), rgb(58, 5, 17), rgb(82, 7, 25), rgb(104, 9, 31));
+	color: #333;
+	text-shadow: -1px 1px 2px #ffffff, -1px -1px 2px #ffffff;
+	padding:12px;
+	background-color: rgb(226, 226, 226);
   }
 
 
