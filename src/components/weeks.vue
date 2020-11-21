@@ -91,9 +91,10 @@ export default {
 				// the game info we want is:
 				// * id
 				// * date
-				// * status
-				// * home team, home score, home rank
-				// * away team, away score, away rank
+				// * start time (lets keep the date and time separate entities)
+				// * status - Final, Postponed, etc
+				// * home team, home score
+				// * away team, away score
 
 				// use this code and fill in the info in the parenthesis
 				// this.weeks = response.data.events
