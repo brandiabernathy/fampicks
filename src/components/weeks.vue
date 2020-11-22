@@ -9,14 +9,12 @@
 						<div class="team">
 							<img :src="require('../assets/' + game.away.team + '.png')">
 							<span class="name" :class="{'win-team' : game.home.score < game.away.score}">
-								<span class="rank" v-if="game.away.rank != 99 && game.away.rank != 0">{{ game.away.rank }}</span>
 								{{ game.away.team }}</span>
 							<span class="score" v-if="game.away.score != 0" :class="{'win-score' : game.home.score < game.away.score}">{{ game.away.score }}</span>
 						</div>
 						<div class="team">
 							<img :src="require('../assets/' + game.home.team + '.png')">
 							<span class="name" :class="{'win-team' : game.home.score > game.away.score}">
-								<span class="rank" v-if="game.home.rank != 99 && game.home.rank != 0" >{{ game.home.rank }}</span>
 								{{ game.home.team }}</span>
 							<span class="score" v-if="game.home.score != 0" :class="{'win-score' : game.home.score > game.away.score}">{{ game.home.score }}</span>
 						</div>
@@ -24,7 +22,7 @@
 					<div class="date">
 						<p>{{ game.date }}</p>
 						<p v-if="game.status.type.detail == 'Final'" class="game-state">Final</p>
-						<!-- <p v-else class="game-state"> {{ game.start_time }} </p> -->
+						<p v-else class="game-state"> {{ game.start_time }} </p>
 					</div>
 				</div>
 			</div>
@@ -43,7 +41,6 @@
 						</td>
 					</tr>
 				</table>
-				<hr>
 			</div>
 		</div>
 	</div>
@@ -260,9 +257,7 @@ export default {
 	background-image: linear-gradient(to right, rgb(166,12,49), rgb(161, 12, 47), rgb(133, 13, 41), rgb(104, 9, 31));
 	color: white;
 	font-weight: 500;
-	padding: 15px 0;
-	padding-left: 20px;
-	clear: left;
+	padding: 15px 0 15px 20px;
 	margin-bottom: 10px;
   }
 
@@ -287,17 +282,24 @@ export default {
   .game-container {
 	border: 1px solid rgba(219, 219, 219, .6);
 	color: gray;
-	padding: 10px;
+	padding: 10px 0 10px 10px;
 	margin: 0 5px 10px;
 	width: calc(33.33% - 10px);
 	float: left;
 	position: relative;
 	background-color: white;
+	display: flex;
+	align-items: center;;
+  }
+
+  .team-container {
+	border-right: 1px solid rgb(224, 224, 224);
+    float: left;
+    width: 80%;
   }
 
   .team {
     padding: 8px 10px;
-    border-right: 1px solid rgb(224, 224, 224);
     font-weight: 600;
   }
 
@@ -346,23 +348,13 @@ export default {
     margin-top: 5px;
   }
 
-  .team-container {
-    float: left;
-    width: 80%;
-  }
-
   .date {
     text-align: center;
     width: 22.5%;
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
   }
 
   .game-state {
     color: black;
-    padding-bottom: 4px;
   }
 
   table {
@@ -373,18 +365,7 @@ export default {
 	  margin: 0 10px 30px;
   }
 
-  hr {
-	background-color: rgba(219, 219, 219, 0.452);
-	border-top: 2px solid rgba(219, 219, 219, .6);
-	border-bottom: 2px solid rgba(219, 219, 219, .6);
-	margin-top: 0 !important;
-	margin-bottom: 30px !important;
-	height: 2px;
-  }
-
   th {
-	color: #333;
-	text-shadow: -1px 1px 2px #ffffff, -1px -1px 2px #ffffff;
 	padding:12px;
 	background-color: rgb(226, 226, 226);
   }
