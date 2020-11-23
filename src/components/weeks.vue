@@ -2,8 +2,8 @@
 <template>
 	<div class="season-container">
 		<div v-for="(week, i, index) in weeks" :key="i">
-			<p class="season-week">Week <span>{{ index + 4 }}</span> of <span class="season-week-total">16</span></p>
-			<div class="season-weekly-container">
+			<p class="season-week">Week of <span class="season-week-date">{{ i }}</span></p>
+			<div class="season-weekly-container" :id="'week-'+index">
 				<div class="game-container" v-for="game in week" :key="game.id">
 					<div class="team-container">
 						<div class="team">
@@ -49,6 +49,7 @@
 <script>
 import axios from 'axios';
 import dayjs from 'dayjs';
+import $ from 'jquery';
 
 var utc = require('dayjs/plugin/utc')
 dayjs.extend(utc)
@@ -75,7 +76,7 @@ export default {
 		axios
 			.get('http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?limit=1000&dates=20200901-20201231&groups=8')
 			.then(res => {
-				console.log('res', res.data.events);
+				console.log('res', res);
 				this.weeks = res.data.events
 				.filter(game => game.status.type.detail != 'Postponed')
 				.sort((a, b) => a.date < b.date ? -1 : 1)
@@ -149,8 +150,9 @@ export default {
 							break;
 					}
 					if(dayjs(now).isSameOrBefore(dayjs(w)) && !this.current_week) {
-						this.current_week = w;
+						this.current_week = i;
 					}
+
 					this.weeks[w].picks = [];
 					this.weeks[w].picks.push(this.annie[i]);
 					this.weeks[w].picks.push(this.carolyn[i]);
@@ -159,6 +161,13 @@ export default {
 					this.weeks[w].picks.push(this.blake[i]);
 					this.weeks[w].picks.push(this.abernathy[i]);
 				}
+			let current = ('#week-'+this.current_week);
+				$(document).ready(function () {
+					console.log('current', current);
+					$('html, body').delay(800).animate({
+						scrollTop: $(current).offset().top - 200
+					}, 1000);
+				});
 			});
 		this.annie[0] = ['Annie (John)', 'Kentucky', 'Florida', 'Mississippi State*', 'Arkansas', 'Alabama', 'Tennessee', 'Texas A&M', 6, 6];
 		this.carolyn[0] = ['Carolyn', 'Auburn', 'Florida', 'LSU', 'Arkansas*', 'Alabama', 'South Carolina', 'Texas A&M', 4, 4];
@@ -216,16 +225,6 @@ export default {
 		this.blake[7] = ['Blake', 'Kentucky', 'Arkansas*', 'Ole Miss', 2, 18];
 		this.abernathy[7] = ['Brandi/Ocean', 'Kentucky', 'Florida', 'Ole Miss', 3, 34];
 	},
-	// methods: {
-	// 	get_current_week() {
-	// 		var now = dayjs().format('MM/DD');
-	// 		console.log('now', now);
-	// 		console.log('hello', )
-	// 		for(let i = 0; i < Object.keys(this.weeks).length; i++) {
-	// 			console.log('this weeks', this.weeks[i]);
-	// 		}
-	// 	}
-	// }
 }
 </script>
 
@@ -252,6 +251,10 @@ export default {
   
   
 	/* END RESET */
+
+	#app {
+		height: 1px;
+	}
 	
 	body {
 		background-color: rgb(241, 243, 245);
@@ -280,12 +283,11 @@ export default {
 	margin-bottom: 10px;
   }
 
-  .season-week span {
+  .season-week-date {
+	font-size: 15px;
 	font-weight: 700;
-  }
-
-  .season-week-total {
-	margin-left: 1px;
+	letter-spacing: .5px;
+	margin-left: 2px;
   }
 
   .season-weekly-container {
@@ -311,13 +313,13 @@ export default {
 	align-items: center;;
   }
 
-  .team-container {
-	border-right: 1px solid rgb(224, 224, 224);
+  .team-container {  
     float: left;
     width: 80%;
   }
 
   .team {
+	border-right: 1px solid rgb(224, 224, 224);
     padding: 8px 10px;
     font-weight: 600;
   }
@@ -377,16 +379,16 @@ export default {
   }
 
   table {
-	  display: table;
 	  width: calc(100% - 20px);
 	  background: #fff;
 	  border: 1px solid rgba(219, 219, 219, .6);
+	  box-shadow: 0 0 5px 3px rgba(116, 116, 116, 0.06);
 	  margin: 0 10px 30px;
   }
 
   th {
 	padding:12px;
-	background-color: rgb(226, 226, 226);
+	background-color: rgba(199, 199, 199, 0.6);
   }
 
 
@@ -427,7 +429,6 @@ export default {
 
 	.team {
 		padding: 8px 10px;
-		border-right: 1px solid rgb(224, 224, 224);
 		font-weight: 600;
 	}
 
