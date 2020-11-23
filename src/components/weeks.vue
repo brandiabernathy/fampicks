@@ -52,12 +52,15 @@ import dayjs from 'dayjs';
 
 var utc = require('dayjs/plugin/utc')
 dayjs.extend(utc)
+var isSameOrBefore = require('dayjs/plugin/isSameOrBefore')
+dayjs.extend(isSameOrBefore)
 
 export default {
 	name: 'Week',
 	data() {
 		return {
 			dayjs: dayjs,
+			current_week: '',
 			weeks: [],
 			games: [],
 			annie: [],
@@ -100,6 +103,11 @@ export default {
 					return acc;
 				}, {});
 
+				// this.get_current_week();
+
+				let now = dayjs().format('MM/DD');
+				console.log('now', now);
+
 				for(let i = 0; i < Object.keys(this.weeks).length; i++) {
 					let w;
 					switch (i) {
@@ -131,7 +139,7 @@ export default {
 							w = '11/21'
 							break;
 						case 9:
-							w = '11/27'
+							w = '11/28'
 							break;
 						case 10:
 							w = '12/04'
@@ -139,6 +147,9 @@ export default {
 						case 11:
 							w = '12/11'
 							break;
+					}
+					if(dayjs(now).isSameOrBefore(dayjs(w)) && !this.current_week) {
+						this.current_week = w;
 					}
 					this.weeks[w].picks = [];
 					this.weeks[w].picks.push(this.annie[i]);
@@ -205,8 +216,16 @@ export default {
 		this.blake[7] = ['Blake', 'Kentucky', 'Arkansas*', 'Ole Miss', 2, 18];
 		this.abernathy[7] = ['Brandi/Ocean', 'Kentucky', 'Florida', 'Ole Miss', 3, 34];
 	},
-	methods: {
-	}
+	// methods: {
+	// 	get_current_week() {
+	// 		var now = dayjs().format('MM/DD');
+	// 		console.log('now', now);
+	// 		console.log('hello', )
+	// 		for(let i = 0; i < Object.keys(this.weeks).length; i++) {
+	// 			console.log('this weeks', this.weeks[i]);
+	// 		}
+	// 	}
+	// }
 }
 </script>
 
