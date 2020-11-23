@@ -104,8 +104,6 @@ export default {
 					return acc;
 				}, {});
 
-				// this.get_current_week();
-
 				let now = dayjs().format('MM/DD');
 				console.log('now', now);
 
@@ -165,51 +163,51 @@ export default {
 				$(document).ready(function () {
 					console.log('current', current);
 					$('html, body').delay(800).animate({
-						scrollTop: $(current).offset().top - 200
+						scrollTop: $(current).offset().top - 280
 					}, 1000);
 				});
 			});
-		this.annie[0] = ['Annie (John)', 'Kentucky', 'Florida', 'Mississippi State*', 'Arkansas', 'Alabama', 'Tennessee', 'Texas A&M', 6, 6];
-		this.carolyn[0] = ['Carolyn', 'Auburn', 'Florida', 'LSU', 'Arkansas*', 'Alabama', 'South Carolina', 'Texas A&M', 4, 4];
-		this.rudy[0] = ['Rudy', 'Kentucky', 'Florida', 'LSU', 'Arkansas*', 'Alabama', 'Tennessee', 'Texas A&M', 4, 4];
-		this.jenny[0] = ['Jenny', 'Auburn', 'Ole Miss', 'LSU', 'Arkansas*', 'Missouri', 'South Carolina', 'Texas A&M', 2, 2];
-		this.blake[0] = ['Blake', 'Kentucky*', 'Florida', 'LSU', 'Georgia', 'Alabama', 'South Carolina', 'Texas A&M', 4, 4];
-		this.abernathy[0] = ['Brandi/Ocean', 'Auburn', 'Ole Miss*', 'LSU', 'Georgia', 'Alabama', 'Tennessee', 'Texas A&M', 5, 5];
+		this.annie[0] = ['Annie (John)', 'Florida', 'Kentucky', 'Mississippi State*', 'Arkansas', 'Alabama', 'Texas A&M', 'Tennessee', 6, 6];
+		this.carolyn[0] = ['Carolyn', 'Florida', 'Auburn', 'LSU', 'Arkansas*', 'Alabama', 'Texas A&M', 'South Carolina', 4, 4];
+		this.rudy[0] = ['Rudy', 'Florida', 'Kentucky', 'LSU', 'Arkansas*', 'Alabama', 'Texas A&M', 'Tennessee', 4, 4];
+		this.jenny[0] = ['Jenny', 'Ole Miss', 'Auburn', 'LSU', 'Arkansas*', 'Missouri', 'Texas A&M', 'South Carolina', 2, 2];
+		this.blake[0] = ['Blake', 'Florida', 'Kentucky*', 'LSU', 'Georgia', 'Alabama', 'Texas A&M', 'South Carolina', 4, 4];
+		this.abernathy[0] = ['Brandi/Ocean', 'Ole Miss*', 'Auburn', 'LSU', 'Georgia', 'Alabama', 'Texas A&M', 'Tennessee', 5, 5];
 
-		this.annie[1] = ['Annie (John)', 'Florida', 'Tennessee', 'Alabama', 'Kentucky*', 'Arkansas', 'Georgia', 'LSU', 6, 12];
-		this.carolyn[1] = ['Carolyn', 'Florida', 'Tennessee', 'Alabama', 'Ole Miss', 'Arkansas*', 'Auburn', 'LSU', 7, 11];
-		this.rudy[1] = ['Rudy', 'Florida', 'Tennessee', 'Alabama', 'Kentucky', 'Arkansas*', 'Auburn', 'LSU', 6, 10];
-		this.jenny[1] = ['Jenny', 'Florida', 'Tennessee', 'Alabama', 'Kentucky', 'Mississippi State', 'Georgia', 'Vanderbilt*', 4, 6];
-		this.blake[1] = ['Blake', 'Florida', 'Tennessee', 'Alabama', 'Kentucky*', 'Mississippi State', 'Auburn', 'LSU', 4, 8];
-		this.abernathy[1] = ['Brandi/Ocean', 'Florida', 'Tennessee', 'Alabama', 'Ole Miss', 'Mississippi State', 'Auburn*', 'LSU', 5, 10];
+		this.annie[1] = ['Annie (John)', 'Florida', 'Tennessee', 'Alabama', 'Kentucky*', 'Georgia', 'Arkansas', 'LSU', 6, 12];
+		this.carolyn[1] = ['Carolyn', 'Florida', 'Tennessee', 'Alabama', 'Ole Miss', 'Auburn', 'Arkansas*', 'LSU', 7, 11];
+		this.rudy[1] = ['Rudy', 'Florida', 'Tennessee', 'Alabama', 'Kentucky', 'Auburn', 'Arkansas*', 'LSU', 6, 10];
+		this.jenny[1] = ['Jenny', 'Florida', 'Tennessee', 'Alabama', 'Kentucky', 'Georgia', 'Mississippi State', 'Vanderbilt*', 4, 6];
+		this.blake[1] = ['Blake', 'Florida', 'Tennessee', 'Alabama', 'Kentucky*', 'Auburn', 'Mississippi State', 'LSU', 4, 8];
+		this.abernathy[1] = ['Brandi/Ocean', 'Florida', 'Tennessee', 'Alabama', 'Ole Miss', 'Auburn*', 'Mississippi State', 'LSU', 5, 10];
 
-		this.annie[2] = ['Annie (John)', 'Alabama', 'Arkansas*', 'Florida', 'Georgia', 'Kentucky', 'LSU', 'Vanderbilt', 3, 15];
-		this.carolyn[2] = ['Carolyn', 'Alabama', 'Arkansas*', 'Florida', 'Georgia', 'Kentucky', 'LSU', 'South Carolina', 4, 15];
-		this.rudy[2] = ['Rudy', 'Alabama', 'Arkansas*', 'Florida', 'Georgia', 'Mississippi State', 'LSU', 'Vanderbilt', 3, 13];
-		this.jenny[2] = ['Jenny', 'Ole Miss', 'Auburn', 'Texas A&M*', 'Georgia', 'Kentucky', 'LSU', 'Vanderbilt', 5, 11];
-		this.blake[2] = ['Blake', 'Alabama', 'Auburn', '', 'Tennessee*', 'Kentucky', 'LSU', 'South Carolina', 4, 12];
-		this.abernathy[2] = ['Brandi/Ocean', 'Alabama', 'Auburn', 'Florida', 'Georgia', 'Kentucky', 'LSU', 'Vanderbilt*', 4, 14];
+		this.annie[2] = ['Annie (John)', 'Florida', 'Vanderbilt', 'LSU', 'Georgia', 'Arkansas*', 'Alabama', 'Kentucky', 3, 15];
+		this.carolyn[2] = ['Carolyn', 'Florida', 'South Carolina', 'LSU', 'Georgia', 'Arkansas*', 'Alabama', 'Kentucky', 4, 15];
+		this.rudy[2] = ['Rudy', 'Florida', 'Vanderbilt', 'LSU', 'Georgia', 'Arkansas*', 'Alabama', 'Mississippi State', 3, 13];
+		this.jenny[2] = ['Jenny', 'Texas A&M*', 'Vanderbilt', 'LSU', 'Georgia', 'Auburn', 'Ole Miss', 'Kentucky', 5, 11];
+		this.blake[2] = ['Blake', '', 'South Carolina', 'LSU', 'Tennessee*', 'Auburn', 'Alabama', 'Kentucky', 4, 12];
+		this.abernathy[2] = ['Brandi/Ocean', 'Florida', 'Vanderbilt*', 'LSU', 'Georgia', 'Auburn', 'Alabama', 'Kentucky', 4, 14];
 
-		this.annie[3] = ['Annie (John)', 'Georgia', 'Ole Miss', 'South Carolina*', 'Tennessee', 'Texas A&M', 3, 18];
-		this.carolyn[3] = ['Carolyn', 'Alabama', 'Arkansas*', 'Auburn', 'Kentucky', 'Mississippi State', 4, 19];
-		this.rudy[3] = ['Rudy', 'Alabama', 'Arkansas', 'South Carolina*', 'Tennessee', 'Texas A&M', 5, 18];
-		this.jenny[3] = ['Jenny', 'Alabama', 'Arkansas*', 'South Carolina', 'Tennessee', 'Mississippi State', 4, 15];
-		this.blake[3] = ['Blake', 'Georgia', 'Ole Miss', 'Auburn', 'Tennessee', 'Mississippi State*', 0, 12];
-		this.abernathy[3] = ['Brandi/Ocean', 'Georgia', 'Arkansas*', 'Auburn', 'Tennessee', 'Texas A&M', 3, 17];
+		this.annie[3] = ['Annie (John)', 'South Carolina*', 'Tennessee', 'Ole Miss', 'Texas A&M', 'Georgia', 3, 18];
+		this.carolyn[3] = ['Carolyn', 'Auburn', 'Kentucky', 'Arkansas*', 'Mississippi State', 'Alabama', 4, 19];
+		this.rudy[3] = ['Rudy', 'South Carolina*', 'Tennessee', 'Arkansas', 'Texas A&M', 'Alabama', 5, 18];
+		this.jenny[3] = ['Jenny', 'South Carolina', 'Tennessee', 'Arkansas*', 'Mississippi State', 'Alabama', 4, 15];
+		this.blake[3] = ['Blake', 'Auburn', 'Tennessee', 'Ole Miss', 'Mississippi State*', 'Georgia', 0, 12];
+		this.abernathy[3] = ['Brandi/Ocean', 'Auburn', 'Tennessee', 'Arkansas*', 'Texas A&M', 'Georgia', 3, 17];
 
-		this.annie[4] = ['Annie (John)', 'Alabama', 'Ole Miss*', 'Kentucky', 'South Carolina', 1, 19];
-		this.carolyn[4] = ['Carolyn', 'Alabama', 'Ole Miss', 'Kentucky', 'South Carolina*', 1, 20];
-		this.rudy[4] = ['Rudy', 'Alabama', 'Ole Miss*', 'Kentucky', 'South Carolina', 1, 19];
-		this.jenny[4] = ['Jenny', 'Tennessee', 'Ole Miss*', 'Missouri', 'LSU', 2, 17];
+		this.annie[4] = ['Annie (John)', 'Ole Miss*', 'Alabama', 'Kentucky', 'South Carolina', 1, 19];
+		this.carolyn[4] = ['Carolyn', 'Ole Miss', 'Alabama', 'Kentucky', 'South Carolina*', 1, 20];
+		this.rudy[4] = ['Rudy', 'Ole Miss*', 'Alabama', 'Kentucky', 'South Carolina', 1, 19];
+		this.jenny[4] = ['Jenny', 'Ole Miss*', 'Tennessee', 'Missouri', 'LSU', 2, 17];
 		this.blake[4] = ['Blake', '', '', '', '', 0 , 12];
-		this.abernathy[4] = ['Brandi/Ocean', 'Alabama', 'Auburn', 'Missouri*', 'South Carolina', 4, 21];
+		this.abernathy[4] = ['Brandi/Ocean', 'Auburn', 'Alabama', 'Missouri*', 'South Carolina', 4, 21];
 
-		this.annie[5] = ['Annie (John)', 'LSU', 'Ole Miss', 'Alabama', 'Texas A&M', 'Georgia', 'Florida', 5, 24];
-		this.carolyn[5] = ['Carolyn', 'Auburn', 'Vanderbilt', 'Alabama', 'Arkansas*', 'Kentucky', 'Florida', 3, 23];
-		this.rudy[5] = ['Rudy', 'LSU', 'Ole Miss', 'Alabama', 'Arkansas*', 'Georgia', 'Missouri', 3, 22];
-		this.jenny[5] = ['Jenny', 'Auburn*', 'Vanderbilt', 'Alabama', 'Texas A&M', 'Kentucky', 'Florida', 5, 22];
-		this.blake[5] = ['Blake', 'Auburn', 'Ole Miss', 'Alabama', 'Arkansas', 'Georgia', 'Missouri*', 4, 16];
-		this.abernathy[5] = ['Brandi/Ocean', 'Auburn*', 'Ole Miss', 'Alabama', 'Texas A&M', 'Georiga', 'Missouri', 6, 27];
+		this.annie[5] = ['Annie (John)', 'Georgia', 'LSU', 'Ole Miss', 'Alabama', 'Texas A&M', 'Florida', 5, 24];
+		this.carolyn[5] = ['Carolyn', 'Kentucky', 'Auburn', 'Vanderbilt', 'Alabama', 'Arkansas*', 'Florida', 3, 23];
+		this.rudy[5] = ['Rudy', 'Georgia', 'LSU', 'Ole Miss', 'Alabama', 'Arkansas*', 'Missouri', 3, 22];
+		this.jenny[5] = ['Jenny', 'Kentucky', 'Auburn*', 'Vanderbilt', 'Alabama', 'Texas A&M', 'Florida', 5, 22];
+		this.blake[5] = ['Blake', 'Georgia', 'Auburn', 'Ole Miss', 'Alabama', 'Arkansas', 'Missouri*', 4, 16];
+		this.abernathy[5] = ['Brandi/Ocean', 'Georgia', 'Auburn*', 'Ole Miss', 'Alabama', 'Texas A&M', 'Missouri', 6, 27];
 
 		this.annie[6] = ['Annie (John)', 'Florida*', 'Vanderbilt', 'Texas A&M', 'Arkansas', 4, 28];
 		this.carolyn[6] = ['Carolyn', 'Georgia', 'Vanderbilt', 'Texas A&M', 'Arkansas*', 3, 26];
@@ -224,6 +222,13 @@ export default {
 		this.jenny[7] = ['Jenny', 'Kentucky', 'Florida', 'Ole Miss', 3, 29];
 		this.blake[7] = ['Blake', 'Kentucky', 'Arkansas*', 'Ole Miss', 2, 18];
 		this.abernathy[7] = ['Brandi/Ocean', 'Kentucky', 'Florida', 'Ole Miss', 3, 34];
+
+		this.annie[8] = ['Annie (John)', 'Florida', 'Arkansas', 'Alabama', 'Auburn', 'Georgia', 'South Carolina*', 4, 34];
+		this.carolyn[8] = ['Carolyn', 'Florida', 'Arkansas*', 'Alabama', 'Auburn', 'Georgia', 'Missouri', 5, 31];
+		this.rudy[8] = ['Rudy', 'Florida', 'Arkansas', 'Alabama', 'Auburn', 'Georgia', 'South Carolina*', 4, 32];
+		this.jenny[8] = ['Jenny', 'Vanderbilt', 'Arkansas*', 'Alabama', 'Auburn', 'Georgia', 'South Carolina', 3, 32];
+		this.blake[8] = ['Blake', 'Florida', 'Arkansas*', 'Alabama', 'Auburn', 'Georgia', 'Missouri', 5, 23];
+		this.abernathy[8] = ['Brandi/Ocean', 'Florida', 'Arkansas*', 'Alabama', 'Auburn', 'Georgia', 'Missouri', 5, 39];
 	},
 }
 </script>
