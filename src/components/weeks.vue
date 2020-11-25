@@ -1,30 +1,29 @@
 
 <template>
 	<div class="season-container">
+		<a href="#week3">week</a>
 		<div v-for="(week, i, index) in weeks" :key="i">
 			<p class="season-week">Week <span>{{ index + 4 }}</span> of <span class="season-week-total">16</span></p>
 			<div class="season-weekly-container">
 				<div class="game-container" v-for="game in week" :key="game.id">
 					<div class="team-container">
 						<div class="team">
-							<img :src="require('../assets/' + game.away.team + '.png')">
-							<span class="name" :class="{'win-team' : game.home.score < game.away.score}">
-								<span class="rank" v-if="game.away.rank != 99 && game.away.rank != 0">{{ game.away.rank }}</span>
-								{{ game.away.team }}</span>
-							<span class="score" v-if="game.away.score != 0" :class="{'win-score' : game.home.score < game.away.score}">{{ game.away.score }}</span>
+							<img :src="require('../assets/' + game.away_team + '.png')">
+							<span class="name" :class="{'win-team' : game.home_score < game.away_score}">
+								{{ game.away_team }}</span>
+							<span class="score" v-if="game.away_score != 0" :class="{'win-score' : game.home_score < game.away_score}">{{ game.away_score }}</span>
 						</div>
 						<div class="team">
-							<img :src="require('../assets/' + game.home.team + '.png')">
-							<span class="name" :class="{'win-team' : game.home.score > game.away.score}">
-								<span class="rank" v-if="game.home.rank != 99 && game.home.rank != 0" >{{ game.home.rank }}</span>
-								{{ game.home.team }}</span>
-							<span class="score" v-if="game.home.score != 0" :class="{'win-score' : game.home.score > game.away.score}">{{ game.home.score }}</span>
+							<img :src="require('../assets/' + game.home_team + '.png')">
+							<span class="name" :class="{'win-team' : game.home_score > game.away_score}">
+								{{ game.home_team }}</span>
+							<span class="score" v-if="game.home_score != 0" :class="{'win-score' : game.home_score > game.away_score}">{{ game.home_score }}</span>
 						</div>
 					</div>
 					<div class="date">
 						<p>{{ game.date }}</p>
 						<p v-if="game.status.type.detail == 'Final'" class="game-state">Final</p>
-						<!-- <p v-else class="game-state"> {{ game.start_time }} </p> -->
+						<p v-else class="game-state"> {{ game.start_time }} </p>
 					</div>
 				</div>
 			</div>
@@ -34,8 +33,6 @@
 						<th colspan="10" class="table-header">
 							Weekly Picks
 						</th>
-						<!-- <th>Week Pts</th>
-						<th>Total Pts</th> -->
 					</tr>
 					<tr v-for="(picks, j) in week.picks" :key="j">
 						<td v-for="(pick, n) in picks" :key="n">
@@ -76,42 +73,27 @@ export default {
 			.get('http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?limit=1000&dates=20200901-20201231&groups=8')
 			.then(response => {
 				console.log('response', response);
+				this.weeks = response.data.events
+				.filter(game => game.status.type.detail != 'Postponed')
+				.sort((a, b) => b.date - a.date)
+				.map(game => ({
+					id: game.id,
+					date: dayjs(game.date).utc(true).format('MM/DD'),
+					start_time: dayjs(game.ddate).utc(true).format('h:mma'),
+					status: game.status,
+					home_team: game.competitions[0].competitors[0].team.location,
+					home_score: game.competitions[0].competitors[0].score,
+					away_team: game.competitions[0].competitors[1].team.location,
+					away_score: game.competitions[0].competitors[1].score
+				}))
 
-				// we are storing the response data from the ESPN API as 'response'
-
-				// we want information about the games, which is found in
-				// response.data.events (you can use the console output to view this)
-
-				// using response.data.events (an array)
-				// use the javascript .filter method to filter out the games that are Postponed
-				// use the javascript .sort method to sort the games by their date
-				// use the javascript .map method to only retrieve the information we want
-				// so we don't have to sift through all of the other info we aren't using
-
-				// the game info we want is:
-				// * id
-				// * date
-				// * start time (lets keep the date and time separate entities)
-				// * status - Final, Postponed, etc
-				// * home team, home score
-				// * away team, away score
-
-				// use this code and fill in the info in the parenthesis
-				// this.weeks = response.data.events
-				// .filter()
-				// .sort()
-				// .map()
-
-				// uncomment this .reduce method. i am not sure how to explain it so i won't make
-				// you write it yourself
-
-				// .reduce((acc, item) => {
-				// 	if (!acc[item.date]) {
-				// 		acc[item.date] = [];
-				// 	}
-				// 	acc[item.date].push(item);
-				// 	return acc;
-				// }, {});
+				.reduce((acc, item) => {
+					if (!acc[item.date]) {
+						acc[item.date] = [];
+					}
+					acc[item.date].push(item);
+					return acc;
+				}, {});
 
 				for(let i = 0; i < Object.keys(this.weeks).length; i++) {
 					let w;
