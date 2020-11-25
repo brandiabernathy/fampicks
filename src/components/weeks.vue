@@ -1,8 +1,8 @@
 
 <template>
 	<div class="season-container">
-		<div v-for="(week, i, index) in weeks" :key="index" :ref="'week'+index">
-			<p class="season-week" :id="'week-'+index">Week of <span class="season-week-date">{{ i }}</span></p>
+		<div v-for="(week, i, index) in weeks" :id="'week'+index" :key="index" :ref="'week'+index">
+			<p class="season-week">Week of <span class="season-week-date">{{ i }}</span></p>
 			<div class="season-weekly-container">
 				<div class="game-container" v-for="game in week" :key="game.id">
 					<div class="team-container">
@@ -74,6 +74,7 @@ export default {
 			jenny: [],
 			blake: [],
 			abernathy: [],
+			position: '',
 		};
 	},
 	created() {
@@ -87,7 +88,7 @@ export default {
 				console.log('res', res);
 				this.weeks = res.data.events
 				.filter(game => game.status.type.detail != 'Postponed')
-				.sort((a, b) => a.date < b.date ? -1 : 1)
+				.sort((a, b) => a.date < b.date)
 				.map(game => ({
 					id: game.id,
 					start_time: dayjs(game.date).utc(true).format('h:mma'),
@@ -176,24 +177,26 @@ export default {
 
 				}
 				// console.log('this.curre')
-				this.current_week = 4;
-			let current = 'week'+this.current_week;
+				this.current_week = 0;
+			let current = '#week'+this.current_week;
 			// let current2 = this.$refs['#week-'+this.current_week];
 			// console.log('this.current2', this.current2);
 			// let current = ('#week-3');
-			console.log('this.$refs', this.$refs);
+			// console.log('this.$refs', this.$refs);
 			console.log('current week', this.current_week);
-			this.$nextTick(() => {
-				console.log('this.$refs', this.$refs[current][0].scrollTop);
-			});
-				// $(document).ready(function () {
-				// 	console.log('$(current).offset().top', $(current).offset().top);
-				// 	console.log('$(current).offset()', $(current).offset())
-				// 	// console.log('current', current);
-				// 	$('html, body').delay(800).animate({
-				// 		scrollTop: $(current).offset().top
-				// 	}, 1000);
-				// });
+			// this.$nextTick(() => {
+			// 	console.log('this.$refs.scrollTop', this.$refs[current][0].scrollHeight);
+			// });
+				$(document).ready(function () {
+					console.log('$(current).offset().top', $(current).offset().top);
+					console.log('$(current).height()', $(current).height())
+					// console.log('$current position', $(current).position.top);
+					// console.log('current', current);
+					// $('html, body').animate({scrollTop: this.$refs[current][0].offsetTop - 200} ,800);
+					$('html, body').delay(800).animate({
+						scrollTop: $(current).offset().top
+					}, 1000);
+				});
 			// }
 			});
 		this.annie[0] = ['Annie (John)', 'Florida', 'Kentucky', 'Mississippi State*', 'Arkansas', 'Alabama', 'Texas A&M', 'Tennessee', 6, 6];
@@ -259,10 +262,16 @@ export default {
 		this.blake[8] = ['Blake', 'Florida', 'Arkansas*', 'Alabama', 'Auburn', 'Georgia', 'Missouri', 5, 23];
 		this.abernathy[8] = ['Brandi/Ocean', 'Florida', 'Arkansas*', 'Alabama', 'Auburn', 'Georgia', 'Missouri', 5, 39];
 	},
-	updated() {
-		let current = '#week-'+this.current_week;
-		console.log('$(current).offset()', $(current).offset())
-	}
+	// updated() {
+	// 	let current = 'week'+this.current_week;
+	// 		this.position = this.$refs[current][0].scrollHeight
+	// 			- this.$refs[current][0].scrollTop
+	// 			- this.$refs[current][0].clientHeight;
+
+	// 			console.log('this.position', this.position);
+	// 		// let current = '#week-'+this.current_week;
+	// 		// console.log('$(current).offset()', $(current).offset())
+	// }
 }
 </script>
 
