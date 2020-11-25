@@ -66,3 +66,5 @@ const picks = {
 		['Florida', 'Arkansas*', 'Alabama', 'Auburn', 'Georgia', 'Missouri'],
 	]
 }
+
+export default picks

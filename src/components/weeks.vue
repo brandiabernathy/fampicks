@@ -1,9 +1,9 @@
 
 <template>
 	<div class="season-container">
-		<div v-for="(week, i, index) in weeks" :key="i">
-			<p class="season-week">Week of <span class="season-week-date">{{ i }}</span></p>
-			<div class="season-weekly-container" :id="'week-'+index">
+		<div v-for="(week, i, index) in weeks" :key="index" :ref="'week'+index">
+			<p class="season-week" :id="'week-'+index">Week of <span class="season-week-date">{{ i }}</span></p>
+			<div class="season-weekly-container">
 				<div class="game-container" v-for="game in week" :key="game.id">
 					<div class="team-container">
 						<div class="team">
@@ -50,6 +50,8 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
 import $ from 'jquery';
+import * as picks from '@/picks.js';
+import * as newpicks from '@/newpicks.js';
 
 var utc = require('dayjs/plugin/utc')
 dayjs.extend(utc)
@@ -62,6 +64,8 @@ export default {
 		return {
 			dayjs: dayjs,
 			current_week: '',
+			picks: '',
+			new_picks: '',
 			weeks: [],
 			games: [],
 			annie: [],
@@ -73,6 +77,10 @@ export default {
 		};
 	},
 	created() {
+		this.picks = picks.default;
+		console.log("this.picks", this.picks)
+		this.new_picks = newpicks.default;
+		console.log("this.new_picks", this.new_picks);
 		axios
 			.get('http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?limit=1000&dates=20200901-20201231&groups=8')
 			.then(res => {
@@ -88,12 +96,10 @@ export default {
 					home: {
 						team: game.competitions[0].competitors[0].team.location,
 						score: game.competitions[0].competitors[0].score,
-						rank: game.competitions[0].competitors[0].curatedRank.current,
 					},
 					away: {
 						team: game.competitions[0].competitors[1].team.location,
 						score: game.competitions[0].competitors[1].score,
-						rank: game.competitions[0].competitors[1].curatedRank.current,
 					}
 				}))
 				.reduce((acc, item) => {
@@ -104,8 +110,15 @@ export default {
 					return acc;
 				}, {});
 
+				console.log('this.weeks', this.weeks);
+
+
 				let now = dayjs().format('MM/DD');
-				console.log('now', now);
+				// console.log('now', now);
+
+				// for(let f = 0; f < Object.keys(this.weeks).length; f++) {
+
+				// }
 
 				for(let i = 0; i < Object.keys(this.weeks).length; i++) {
 					let w;
@@ -158,14 +171,30 @@ export default {
 					this.weeks[w].picks.push(this.jenny[i]);
 					this.weeks[w].picks.push(this.blake[i]);
 					this.weeks[w].picks.push(this.abernathy[i]);
+
+					// this.weeks[w].new_picks = {};
+
 				}
-			let current = ('#week-'+this.current_week);
-				$(document).ready(function () {
-					console.log('current', current);
-					$('html, body').delay(800).animate({
-						scrollTop: $(current).offset().top - 280
-					}, 1000);
-				});
+				// console.log('this.curre')
+				this.current_week = 4;
+			let current = 'week'+this.current_week;
+			// let current2 = this.$refs['#week-'+this.current_week];
+			// console.log('this.current2', this.current2);
+			// let current = ('#week-3');
+			console.log('this.$refs', this.$refs);
+			console.log('current week', this.current_week);
+			this.$nextTick(() => {
+				console.log('this.$refs', this.$refs[current][0].scrollTop);
+			});
+				// $(document).ready(function () {
+				// 	console.log('$(current).offset().top', $(current).offset().top);
+				// 	console.log('$(current).offset()', $(current).offset())
+				// 	// console.log('current', current);
+				// 	$('html, body').delay(800).animate({
+				// 		scrollTop: $(current).offset().top
+				// 	}, 1000);
+				// });
+			// }
 			});
 		this.annie[0] = ['Annie (John)', 'Florida', 'Kentucky', 'Mississippi State*', 'Arkansas', 'Alabama', 'Texas A&M', 'Tennessee', 6, 6];
 		this.carolyn[0] = ['Carolyn', 'Florida', 'Auburn', 'LSU', 'Arkansas*', 'Alabama', 'Texas A&M', 'South Carolina', 4, 4];
@@ -230,6 +259,10 @@ export default {
 		this.blake[8] = ['Blake', 'Florida', 'Arkansas*', 'Alabama', 'Auburn', 'Georgia', 'Missouri', 5, 23];
 		this.abernathy[8] = ['Brandi/Ocean', 'Florida', 'Arkansas*', 'Alabama', 'Auburn', 'Georgia', 'Missouri', 5, 39];
 	},
+	updated() {
+		let current = '#week-'+this.current_week;
+		console.log('$(current).offset()', $(current).offset())
+	}
 }
 </script>
 
