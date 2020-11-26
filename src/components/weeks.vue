@@ -176,25 +176,10 @@ export default {
 					// this.weeks[w].new_picks = {};
 
 				}
-				// console.log('this.curre')
-				this.current_week = 0;
 			let current = '#week'+this.current_week;
-			// let current2 = this.$refs['#week-'+this.current_week];
-			// console.log('this.current2', this.current2);
-			// let current = ('#week-3');
-			// console.log('this.$refs', this.$refs);
-			console.log('current week', this.current_week);
-			// this.$nextTick(() => {
-			// 	console.log('this.$refs.scrollTop', this.$refs[current][0].scrollHeight);
-			// });
 				$(document).ready(function () {
-					console.log('$(current).offset().top', $(current).offset().top);
-					console.log('$(current).height()', $(current).height())
-					// console.log('$current position', $(current).position.top);
-					// console.log('current', current);
-					// $('html, body').animate({scrollTop: this.$refs[current][0].offsetTop - 200} ,800);
-					$('html, body').delay(800).animate({
-						scrollTop: $(current).offset().top
+					$('html, body').delay(500).animate({
+						scrollTop: $(current).offset().top - 100
 					}, 1000);
 				});
 			// }
@@ -262,6 +247,9 @@ export default {
 		this.blake[8] = ['Blake', 'Florida', 'Arkansas*', 'Alabama', 'Auburn', 'Georgia', 'Missouri', 5, 23];
 		this.abernathy[8] = ['Brandi/Ocean', 'Florida', 'Arkansas*', 'Alabama', 'Auburn', 'Georgia', 'Missouri', 5, 39];
 	},
+	mounted() {
+		
+	}
 	// updated() {
 	// 	let current = 'week'+this.current_week;
 	// 		this.position = this.$refs[current][0].scrollHeight
@@ -375,7 +363,8 @@ export default {
 	display: inline-block;
 	vertical-align: middle;
     margin-right: 15px;
-    width: 25px;
+	width: 25px;
+	height: 25px;
   }
 
   .team .name {
