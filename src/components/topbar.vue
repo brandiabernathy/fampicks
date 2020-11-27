@@ -157,30 +157,13 @@
 	}
 
   @media all and (max-width: 1100px) {
-	header {
-		height: 80px;
-	}
-
-	.header-left img {
-		height: 60px;
-	}
-
-	.header-left h1 {
-		font-size: 36px;
-  	}
-
 	.fam {
 		padding: 0 15px;
 	}
 
 	.fam h2 {
-		font-size: 16px;
+		font-size: 17px;
 		margin-bottom: -5px;
-	}
-
-	.leader {
-		margin-top: 2px;
-		font-size: 14px;
 	}
   }
 
@@ -204,12 +187,18 @@
 
 	.leader {
 		display: block;
+		margin-top: 2px;
+		font-size: 14px;
 	}
   }
 
   @media all and (max-width: 500px) {
+	header {
+		height: 80px;
+	}
+
 	.header-left img {
-		height: 50px;
+		height: 65px;
 		padding-left: 15px;
 	}
 
@@ -217,6 +206,10 @@
 		font-size: 28px;
 		margin-left: 15px;
   	}
+	
+	.header-right {
+		margin-right: 0;
+	}
 
 	.fam h2 {
 		font-size: 16px;
@@ -226,6 +219,35 @@
 	.leader {
 		margin-top: 5px;
 		font-size: 12px;
+	}
+  }
+
+  @media all and (max-width: 375px) {
+	.header-left img {
+		height: 50px;
+		padding-left: 8px;
+	}
+
+	.header-left h1 {
+		font-size: 24px;
+		margin-left: 6px;
+  	}
+	
+	.header-right {
+		margin-right: -6px;
+	}
+
+	.fam h2 {
+		font-size: 16px;
+		margin-bottom: -2px;
+	}
+
+	.fam p {
+		font-size: 18px;
+	}
+
+	.score-lead {
+		height: 25px;
 	}
   }
 

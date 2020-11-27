@@ -174,28 +174,24 @@ export default {
 					// this.weeks[w].new_picks = {};
 
 				}
-				// console.log('this.curre')
-			// 	this.current_week = 0;
-			// let current = '#week'+this.current_week;
-			// // let current2 = this.$refs['#week-'+this.current_week];
-			// // console.log('this.current2', this.current2);
-			// // let current = ('#week-3');
-			// // console.log('this.$refs', this.$refs);
-			// console.log('current week', this.current_week);
-			// // this.$nextTick(() => {
-			// // 	console.log('this.$refs.scrollTop', this.$refs[current][0].scrollHeight);
-			// // });
-			// 	$(document).ready(function () {
-			// 		console.log('$(current).offset().top', $(current).offset().top);
-			// 		console.log('$(current).height()', $(current).height())
-			// 		// console.log('$current position', $(current).position.top);
-			// 		// console.log('current', current);
-			// 		// $('html, body').animate({scrollTop: this.$refs[current][0].offsetTop - 200} ,800);
-			// 		$('html, body').delay(800).animate({
-			// 			scrollTop: $(current).offset().top
-			// 		}, 1000);
-			// 	});
-			// }
+
+				if($(window).width() >= 1100){
+				let current = '#week'+this.current_week;
+					$(document).ready(function () {
+						$('html, body').delay(500).animate({
+							scrollTop: $(current).offset().top - 100
+						}, 1000);
+					});
+				}
+
+				if($(window).width() <= 500){
+				let current = '#week'+this.current_week;
+					$(document).ready(function () {
+						$('html, body').delay(500).animate({
+							scrollTop: $(current).offset().top - 80
+						}, 1000);
+					});
+				}
 			});
 		this.annie[0] = ['Annie (John)', 'Florida', 'Kentucky', 'Mississippi State*', 'Arkansas', 'Alabama', 'Texas A&M', 'Tennessee', 6, 6];
 		this.carolyn[0] = ['Carolyn', 'Florida', 'Auburn', 'LSU', 'Arkansas*', 'Alabama', 'Texas A&M', 'South Carolina', 4, 4];
@@ -260,6 +256,9 @@ export default {
 		this.blake[8] = ['Blake', 'Florida', 'Arkansas*', 'Alabama', 'Auburn', 'Georgia', 'Missouri', 5, 23];
 		this.abernathy[8] = ['Brandi/Ocean', 'Florida', 'Arkansas*', 'Alabama', 'Auburn', 'Georgia', 'Missouri', 5, 39];
 	},
+	mounted() {
+		
+	}
 	// updated() {
 	// 	let current = 'week'+this.current_week;
 	// 		this.position = this.$refs[current][0].scrollHeight
@@ -373,7 +372,8 @@ export default {
 	display: inline-block;
 	vertical-align: middle;
     margin-right: 15px;
-    width: 25px;
+	width: 25px;
+	height: 25px;
   }
 
   .team .name {
@@ -423,12 +423,17 @@ export default {
     color: black;
   }
 
+  .fam-picks {
+	overflow-x: auto;
+  }
+
   table {
 	  width: calc(100% - 20px);
 	  background: #fff;
 	  border: 1px solid rgba(219, 219, 219, .6);
 	  box-shadow: 0 0 5px 3px rgba(116, 116, 116, 0.06);
 	  margin: 0 10px 30px;
+	  overflow: auto;
   }
 
   th {
@@ -468,9 +473,6 @@ export default {
   }
 
   @media all and (max-width: 1100px) {
-	.season-container {
-		top: 80px;
-	}
 
 	.team {
 		padding: 8px 10px;
@@ -522,9 +524,22 @@ export default {
 			margin-right: 12px;
 			height: 20px;
 		}
+
+		.fam-picks {
+			width: calc(100% - 20px);
+			margin-left: 10px;
+		}
+
+		table {
+			margin-left: 0;
+		}
 	}
 
-	@media all and (max-width: 580px) {
+	@media all and (max-width: 500px) {
+		.season-container {
+			top: 80px;
+		}
+
 		.season-week {
 			margin-bottom: 20px;
 		}
@@ -542,6 +557,11 @@ export default {
 
 		.team img {
 			height: 25px;
+		}
+
+		.fam-picks {
+			width: calc(100% - 30px);
+			margin-left: 15px;
 		}
 	}
 </style>
