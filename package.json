@@ -11,6 +11,7 @@
     "axios": "^0.21.0",
     "core-js": "^3.7.0",
     "dayjs": "^1.9.5",
+    "jquery": "^3.5.1",
     "vue": "^2.6.12"
   },
   "devDependencies": {

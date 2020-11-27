@@ -1,9 +1,8 @@
 
 <template>
 	<div class="season-container">
-		<a href="#week3">week</a>
-		<div v-for="(week, i, index) in weeks" :key="i">
-			<p class="season-week">Week <span>{{ index + 4 }}</span> of <span class="season-week-total">16</span></p>
+		<div v-for="(week, i, index) in weeks" :id="'week'+index" :key="index" :ref="'week'+index">
+			<p class="season-week">Week of <span class="season-week-date">{{ i }}</span></p>
 			<div class="season-weekly-container">
 				<div class="game-container" v-for="game in week" :key="game.id">
 					<div class="team-container">
@@ -40,7 +39,6 @@
 						</td>
 					</tr>
 				</table>
-				<hr>
 			</div>
 		</div>
 	</div>
@@ -49,15 +47,23 @@
 <script>
 import axios from 'axios';
 import dayjs from 'dayjs';
+import $ from 'jquery';
+import * as picks from '@/picks.js';
+import * as newpicks from '@/newpicks.js';
 
 var utc = require('dayjs/plugin/utc')
 dayjs.extend(utc)
+var isSameOrBefore = require('dayjs/plugin/isSameOrBefore')
+dayjs.extend(isSameOrBefore)
 
 export default {
 	name: 'Week',
 	data() {
 		return {
 			dayjs: dayjs,
+			current_week: '',
+			picks: '',
+			new_picks: '',
 			weeks: [],
 			games: [],
 			annie: [],
@@ -66,9 +72,14 @@ export default {
 			jenny: [],
 			blake: [],
 			abernathy: [],
+			position: '',
 		};
 	},
 	created() {
+		this.picks = picks.default;
+		console.log("this.picks", this.picks)
+		this.new_picks = newpicks.default;
+		console.log("this.new_picks", this.new_picks);
 		axios
 			.get('http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?limit=1000&dates=20200901-20201231&groups=8')
 			.then(response => {
@@ -94,6 +105,16 @@ export default {
 					acc[item.date].push(item);
 					return acc;
 				}, {});
+
+				console.log('this.weeks', this.weeks);
+
+
+				let now = dayjs().format('MM/DD');
+				// console.log('now', now);
+
+				// for(let f = 0; f < Object.keys(this.weeks).length; f++) {
+
+				// }
 
 				for(let i = 0; i < Object.keys(this.weeks).length; i++) {
 					let w;
@@ -126,7 +147,7 @@ export default {
 							w = '11/21'
 							break;
 						case 9:
-							w = '11/27'
+							w = '11/28'
 							break;
 						case 10:
 							w = '12/04'
@@ -135,6 +156,10 @@ export default {
 							w = '12/11'
 							break;
 					}
+					if(dayjs(now).isSameOrBefore(dayjs(w)) && !this.current_week) {
+						this.current_week = i;
+					}
+
 					this.weeks[w].picks = [];
 					this.weeks[w].picks.push(this.annie[i]);
 					this.weeks[w].picks.push(this.carolyn[i]);
@@ -142,49 +167,70 @@ export default {
 					this.weeks[w].picks.push(this.jenny[i]);
 					this.weeks[w].picks.push(this.blake[i]);
 					this.weeks[w].picks.push(this.abernathy[i]);
+
+					// this.weeks[w].new_picks = {};
+
+				}
+
+				if($(window).width() >= 1100){
+				let current = '#week'+this.current_week;
+					$(document).ready(function () {
+						$('html, body').delay(500).animate({
+							scrollTop: $(current).offset().top - 100
+						}, 1000);
+					});
+				}
+
+				if($(window).width() <= 500){
+				let current = '#week'+this.current_week;
+					$(document).ready(function () {
+						$('html, body').delay(500).animate({
+							scrollTop: $(current).offset().top - 80
+						}, 1000);
+					});
 				}
 			});
-		this.annie[0] = ['Annie (John)', 'Kentucky', 'Florida', 'Mississippi State*', 'Arkansas', 'Alabama', 'Tennessee', 'Texas A&M', 6, 6];
-		this.carolyn[0] = ['Carolyn', 'Auburn', 'Florida', 'LSU', 'Arkansas*', 'Alabama', 'South Carolina', 'Texas A&M', 4, 4];
-		this.rudy[0] = ['Rudy', 'Kentucky', 'Florida', 'LSU', 'Arkansas*', 'Alabama', 'Tennessee', 'Texas A&M', 4, 4];
-		this.jenny[0] = ['Jenny', 'Auburn', 'Ole Miss', 'LSU', 'Arkansas*', 'Missouri', 'South Carolina', 'Texas A&M', 2, 2];
-		this.blake[0] = ['Blake', 'Kentucky*', 'Florida', 'LSU', 'Georgia', 'Alabama', 'South Carolina', 'Texas A&M', 4, 4];
-		this.abernathy[0] = ['Brandi/Ocean', 'Auburn', 'Ole Miss*', 'LSU', 'Georgia', 'Alabama', 'Tennessee', 'Texas A&M', 5, 5];
+		this.annie[0] = ['Annie (John)', 'Florida', 'Kentucky', 'Mississippi State*', 'Arkansas', 'Alabama', 'Texas A&M', 'Tennessee', 6, 6];
+		this.carolyn[0] = ['Carolyn', 'Florida', 'Auburn', 'LSU', 'Arkansas*', 'Alabama', 'Texas A&M', 'South Carolina', 4, 4];
+		this.rudy[0] = ['Rudy', 'Florida', 'Kentucky', 'LSU', 'Arkansas*', 'Alabama', 'Texas A&M', 'Tennessee', 4, 4];
+		this.jenny[0] = ['Jenny', 'Ole Miss', 'Auburn', 'LSU', 'Arkansas*', 'Missouri', 'Texas A&M', 'South Carolina', 2, 2];
+		this.blake[0] = ['Blake', 'Florida', 'Kentucky*', 'LSU', 'Georgia', 'Alabama', 'Texas A&M', 'South Carolina', 4, 4];
+		this.abernathy[0] = ['Brandi/Ocean', 'Ole Miss*', 'Auburn', 'LSU', 'Georgia', 'Alabama', 'Texas A&M', 'Tennessee', 5, 5];
 
-		this.annie[1] = ['Annie (John)', 'Florida', 'Tennessee', 'Alabama', 'Kentucky*', 'Arkansas', 'Georgia', 'LSU', 6, 12];
-		this.carolyn[1] = ['Carolyn', 'Florida', 'Tennessee', 'Alabama', 'Ole Miss', 'Arkansas*', 'Auburn', 'LSU', 7, 11];
-		this.rudy[1] = ['Rudy', 'Florida', 'Tennessee', 'Alabama', 'Kentucky', 'Arkansas*', 'Auburn', 'LSU', 6, 10];
-		this.jenny[1] = ['Jenny', 'Florida', 'Tennessee', 'Alabama', 'Kentucky', 'Mississippi State', 'Georgia', 'Vanderbilt*', 4, 6];
-		this.blake[1] = ['Blake', 'Florida', 'Tennessee', 'Alabama', 'Kentucky*', 'Mississippi State', 'Auburn', 'LSU', 4, 8];
-		this.abernathy[1] = ['Brandi/Ocean', 'Florida', 'Tennessee', 'Alabama', 'Ole Miss', 'Mississippi State', 'Auburn*', 'LSU', 5, 10];
+		this.annie[1] = ['Annie (John)', 'Florida', 'Tennessee', 'Alabama', 'Kentucky*', 'Georgia', 'Arkansas', 'LSU', 6, 12];
+		this.carolyn[1] = ['Carolyn', 'Florida', 'Tennessee', 'Alabama', 'Ole Miss', 'Auburn', 'Arkansas*', 'LSU', 7, 11];
+		this.rudy[1] = ['Rudy', 'Florida', 'Tennessee', 'Alabama', 'Kentucky', 'Auburn', 'Arkansas*', 'LSU', 6, 10];
+		this.jenny[1] = ['Jenny', 'Florida', 'Tennessee', 'Alabama', 'Kentucky', 'Georgia', 'Mississippi State', 'Vanderbilt*', 4, 6];
+		this.blake[1] = ['Blake', 'Florida', 'Tennessee', 'Alabama', 'Kentucky*', 'Auburn', 'Mississippi State', 'LSU', 4, 8];
+		this.abernathy[1] = ['Brandi/Ocean', 'Florida', 'Tennessee', 'Alabama', 'Ole Miss', 'Auburn*', 'Mississippi State', 'LSU', 5, 10];
 
-		this.annie[2] = ['Annie (John)', 'Alabama', 'Arkansas*', 'Florida', 'Georgia', 'Kentucky', 'LSU', 'Vanderbilt', 3, 15];
-		this.carolyn[2] = ['Carolyn', 'Alabama', 'Arkansas*', 'Florida', 'Georgia', 'Kentucky', 'LSU', 'South Carolina', 4, 15];
-		this.rudy[2] = ['Rudy', 'Alabama', 'Arkansas*', 'Florida', 'Georgia', 'Mississippi State', 'LSU', 'Vanderbilt', 3, 13];
-		this.jenny[2] = ['Jenny', 'Ole Miss', 'Auburn', 'Texas A&M*', 'Georgia', 'Kentucky', 'LSU', 'Vanderbilt', 5, 11];
-		this.blake[2] = ['Blake', 'Alabama', 'Auburn', '', 'Tennessee*', 'Kentucky', 'LSU', 'South Carolina', 4, 12];
-		this.abernathy[2] = ['Brandi/Ocean', 'Alabama', 'Auburn', 'Florida', 'Georgia', 'Kentucky', 'LSU', 'Vanderbilt*', 4, 14];
+		this.annie[2] = ['Annie (John)', 'Florida', 'Vanderbilt', 'LSU', 'Georgia', 'Arkansas*', 'Alabama', 'Kentucky', 3, 15];
+		this.carolyn[2] = ['Carolyn', 'Florida', 'South Carolina', 'LSU', 'Georgia', 'Arkansas*', 'Alabama', 'Kentucky', 4, 15];
+		this.rudy[2] = ['Rudy', 'Florida', 'Vanderbilt', 'LSU', 'Georgia', 'Arkansas*', 'Alabama', 'Mississippi State', 3, 13];
+		this.jenny[2] = ['Jenny', 'Texas A&M*', 'Vanderbilt', 'LSU', 'Georgia', 'Auburn', 'Ole Miss', 'Kentucky', 5, 11];
+		this.blake[2] = ['Blake', '', 'South Carolina', 'LSU', 'Tennessee*', 'Auburn', 'Alabama', 'Kentucky', 4, 12];
+		this.abernathy[2] = ['Brandi/Ocean', 'Florida', 'Vanderbilt*', 'LSU', 'Georgia', 'Auburn', 'Alabama', 'Kentucky', 4, 14];
 
-		this.annie[3] = ['Annie (John)', 'Georgia', 'Ole Miss', 'South Carolina*', 'Tennessee', 'Texas A&M', 3, 18];
-		this.carolyn[3] = ['Carolyn', 'Alabama', 'Arkansas*', 'Auburn', 'Kentucky', 'Mississippi State', 4, 19];
-		this.rudy[3] = ['Rudy', 'Alabama', 'Arkansas', 'South Carolina*', 'Tennessee', 'Texas A&M', 5, 18];
-		this.jenny[3] = ['Jenny', 'Alabama', 'Arkansas*', 'South Carolina', 'Tennessee', 'Mississippi State', 4, 15];
-		this.blake[3] = ['Blake', 'Georgia', 'Ole Miss', 'Auburn', 'Tennessee', 'Mississippi State*', 0, 12];
-		this.abernathy[3] = ['Brandi/Ocean', 'Georgia', 'Arkansas*', 'Auburn', 'Tennessee', 'Texas A&M', 3, 17];
+		this.annie[3] = ['Annie (John)', 'South Carolina*', 'Tennessee', 'Ole Miss', 'Texas A&M', 'Georgia', 3, 18];
+		this.carolyn[3] = ['Carolyn', 'Auburn', 'Kentucky', 'Arkansas*', 'Mississippi State', 'Alabama', 4, 19];
+		this.rudy[3] = ['Rudy', 'South Carolina*', 'Tennessee', 'Arkansas', 'Texas A&M', 'Alabama', 5, 18];
+		this.jenny[3] = ['Jenny', 'South Carolina', 'Tennessee', 'Arkansas*', 'Mississippi State', 'Alabama', 4, 15];
+		this.blake[3] = ['Blake', 'Auburn', 'Tennessee', 'Ole Miss', 'Mississippi State*', 'Georgia', 0, 12];
+		this.abernathy[3] = ['Brandi/Ocean', 'Auburn', 'Tennessee', 'Arkansas*', 'Texas A&M', 'Georgia', 3, 17];
 
-		this.annie[4] = ['Annie (John)', 'Alabama', 'Ole Miss*', 'Kentucky', 'South Carolina', 1, 19];
-		this.carolyn[4] = ['Carolyn', 'Alabama', 'Ole Miss', 'Kentucky', 'South Carolina*', 1, 20];
-		this.rudy[4] = ['Rudy', 'Alabama', 'Ole Miss*', 'Kentucky', 'South Carolina', 1, 19];
-		this.jenny[4] = ['Jenny', 'Tennessee', 'Ole Miss*', 'Missouri', 'LSU', 2, 17];
+		this.annie[4] = ['Annie (John)', 'Ole Miss*', 'Alabama', 'Kentucky', 'South Carolina', 1, 19];
+		this.carolyn[4] = ['Carolyn', 'Ole Miss', 'Alabama', 'Kentucky', 'South Carolina*', 1, 20];
+		this.rudy[4] = ['Rudy', 'Ole Miss*', 'Alabama', 'Kentucky', 'South Carolina', 1, 19];
+		this.jenny[4] = ['Jenny', 'Ole Miss*', 'Tennessee', 'Missouri', 'LSU', 2, 17];
 		this.blake[4] = ['Blake', '', '', '', '', 0 , 12];
-		this.abernathy[4] = ['Brandi/Ocean', 'Alabama', 'Auburn', 'Missouri*', 'South Carolina', 4, 21];
+		this.abernathy[4] = ['Brandi/Ocean', 'Auburn', 'Alabama', 'Missouri*', 'South Carolina', 4, 21];
 
-		this.annie[5] = ['Annie (John)', 'LSU', 'Ole Miss', 'Alabama', 'Texas A&M', 'Georgia', 'Florida', 5, 24];
-		this.carolyn[5] = ['Carolyn', 'Auburn', 'Vanderbilt', 'Alabama', 'Arkansas*', 'Kentucky', 'Florida', 3, 23];
-		this.rudy[5] = ['Rudy', 'LSU', 'Ole Miss', 'Alabama', 'Arkansas*', 'Georgia', 'Missouri', 3, 22];
-		this.jenny[5] = ['Jenny', 'Auburn*', 'Vanderbilt', 'Alabama', 'Texas A&M', 'Kentucky', 'Florida', 5, 22];
-		this.blake[5] = ['Blake', 'Auburn', 'Ole Miss', 'Alabama', 'Arkansas', 'Georgia', 'Missouri*', 4, 16];
-		this.abernathy[5] = ['Brandi/Ocean', 'Auburn*', 'Ole Miss', 'Alabama', 'Texas A&M', 'Georiga', 'Missouri', 6, 27];
+		this.annie[5] = ['Annie (John)', 'Georgia', 'LSU', 'Ole Miss', 'Alabama', 'Texas A&M', 'Florida', 5, 24];
+		this.carolyn[5] = ['Carolyn', 'Kentucky', 'Auburn', 'Vanderbilt', 'Alabama', 'Arkansas*', 'Florida', 3, 23];
+		this.rudy[5] = ['Rudy', 'Georgia', 'LSU', 'Ole Miss', 'Alabama', 'Arkansas*', 'Missouri', 3, 22];
+		this.jenny[5] = ['Jenny', 'Kentucky', 'Auburn*', 'Vanderbilt', 'Alabama', 'Texas A&M', 'Florida', 5, 22];
+		this.blake[5] = ['Blake', 'Georgia', 'Auburn', 'Ole Miss', 'Alabama', 'Arkansas', 'Missouri*', 4, 16];
+		this.abernathy[5] = ['Brandi/Ocean', 'Georgia', 'Auburn*', 'Ole Miss', 'Alabama', 'Texas A&M', 'Missouri', 6, 27];
 
 		this.annie[6] = ['Annie (John)', 'Florida*', 'Vanderbilt', 'Texas A&M', 'Arkansas', 4, 28];
 		this.carolyn[6] = ['Carolyn', 'Georgia', 'Vanderbilt', 'Texas A&M', 'Arkansas*', 3, 26];
@@ -199,9 +245,27 @@ export default {
 		this.jenny[7] = ['Jenny', 'Kentucky', 'Florida', 'Ole Miss', 3, 29];
 		this.blake[7] = ['Blake', 'Kentucky', 'Arkansas*', 'Ole Miss', 2, 18];
 		this.abernathy[7] = ['Brandi/Ocean', 'Kentucky', 'Florida', 'Ole Miss', 3, 34];
+
+		this.annie[8] = ['Annie (John)', 'Florida', 'Arkansas', 'Alabama', 'Auburn', 'Georgia', 'South Carolina*', 4, 34];
+		this.carolyn[8] = ['Carolyn', 'Florida', 'Arkansas*', 'Alabama', 'Auburn', 'Georgia', 'Missouri', 5, 31];
+		this.rudy[8] = ['Rudy', 'Florida', 'Arkansas', 'Alabama', 'Auburn', 'Georgia', 'South Carolina*', 4, 32];
+		this.jenny[8] = ['Jenny', 'Vanderbilt', 'Arkansas*', 'Alabama', 'Auburn', 'Georgia', 'South Carolina', 3, 32];
+		this.blake[8] = ['Blake', 'Florida', 'Arkansas*', 'Alabama', 'Auburn', 'Georgia', 'Missouri', 5, 23];
+		this.abernathy[8] = ['Brandi/Ocean', 'Florida', 'Arkansas*', 'Alabama', 'Auburn', 'Georgia', 'Missouri', 5, 39];
 	},
-	methods: {
+	mounted() {
+		
 	}
+	// updated() {
+	// 	let current = 'week'+this.current_week;
+	// 		this.position = this.$refs[current][0].scrollHeight
+	// 			- this.$refs[current][0].scrollTop
+	// 			- this.$refs[current][0].clientHeight;
+
+	// 			console.log('this.position', this.position);
+	// 		// let current = '#week-'+this.current_week;
+	// 		// console.log('$(current).offset()', $(current).offset())
+	// }
 }
 </script>
 
@@ -228,6 +292,10 @@ export default {
   
   
 	/* END RESET */
+
+	#app {
+		height: 1px;
+	}
 	
 	body {
 		background-color: rgb(241, 243, 245);
@@ -252,18 +320,15 @@ export default {
 	background-image: linear-gradient(to right, rgb(166,12,49), rgb(161, 12, 47), rgb(133, 13, 41), rgb(104, 9, 31));
 	color: white;
 	font-weight: 500;
-	padding: 15px 0;
-	padding-left: 20px;
-	clear: left;
+	padding: 15px 0 15px 20px;
 	margin-bottom: 10px;
   }
 
-  .season-week span {
+  .season-week-date {
+	font-size: 15px;
 	font-weight: 700;
-  }
-
-  .season-week-total {
-	margin-left: 1px;
+	letter-spacing: .5px;
+	margin-left: 2px;
   }
 
   .season-weekly-container {
@@ -279,17 +344,24 @@ export default {
   .game-container {
 	border: 1px solid rgba(219, 219, 219, .6);
 	color: gray;
-	padding: 10px;
+	padding: 10px 0 10px 10px;
 	margin: 0 5px 10px;
 	width: calc(33.33% - 10px);
 	float: left;
 	position: relative;
 	background-color: white;
+	display: flex;
+	align-items: center;;
+  }
+
+  .team-container {  
+    float: left;
+    width: 80%;
   }
 
   .team {
+	border-right: 1px solid rgb(224, 224, 224);
     padding: 8px 10px;
-    border-right: 1px solid rgb(224, 224, 224);
     font-weight: 600;
   }
 
@@ -297,7 +369,8 @@ export default {
 	display: inline-block;
 	vertical-align: middle;
     margin-right: 15px;
-    width: 25px;
+	width: 25px;
+	height: 25px;
   }
 
   .team .name {
@@ -338,47 +411,31 @@ export default {
     margin-top: 5px;
   }
 
-  .team-container {
-    float: left;
-    width: 80%;
-  }
-
   .date {
     text-align: center;
     width: 22.5%;
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
   }
 
   .game-state {
     color: black;
-    padding-bottom: 4px;
+  }
+
+  .fam-picks {
+	overflow-x: auto;
   }
 
   table {
-	  display: table;
 	  width: calc(100% - 20px);
 	  background: #fff;
 	  border: 1px solid rgba(219, 219, 219, .6);
+	  box-shadow: 0 0 5px 3px rgba(116, 116, 116, 0.06);
 	  margin: 0 10px 30px;
-  }
-
-  hr {
-	background-color: rgba(219, 219, 219, 0.452);
-	border-top: 2px solid rgba(219, 219, 219, .6);
-	border-bottom: 2px solid rgba(219, 219, 219, .6);
-	margin-top: 0 !important;
-	margin-bottom: 30px !important;
-	height: 2px;
+	  overflow: auto;
   }
 
   th {
-	color: #333;
-	text-shadow: -1px 1px 2px #ffffff, -1px -1px 2px #ffffff;
 	padding:12px;
-	background-color: rgb(226, 226, 226);
+	background-color: rgba(199, 199, 199, 0.6);
   }
 
 
@@ -413,13 +470,9 @@ export default {
   }
 
   @media all and (max-width: 1100px) {
-	.season-container {
-		top: 80px;
-	}
 
 	.team {
 		padding: 8px 10px;
-		border-right: 1px solid rgb(224, 224, 224);
 		font-weight: 600;
 	}
 
@@ -468,9 +521,22 @@ export default {
 			margin-right: 12px;
 			height: 20px;
 		}
+
+		.fam-picks {
+			width: calc(100% - 20px);
+			margin-left: 10px;
+		}
+
+		table {
+			margin-left: 0;
+		}
 	}
 
-	@media all and (max-width: 580px) {
+	@media all and (max-width: 500px) {
+		.season-container {
+			top: 80px;
+		}
+
 		.season-week {
 			margin-bottom: 20px;
 		}
@@ -488,6 +554,11 @@ export default {
 
 		.team img {
 			height: 25px;
+		}
+
+		.fam-picks {
+			width: calc(100% - 30px);
+			margin-left: 15px;
 		}
 	}
 </style>

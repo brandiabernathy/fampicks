@@ -7,7 +7,7 @@
 
 <script>
 import Weeks from './components/weeks.vue'
-import TopBar from './components/header.vue'
+import TopBar from './components/topbar.vue'
 
 export default {
 	name: 'App',
@@ -21,11 +21,4 @@ export default {
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Quantico:wght@400;700&display=swap');
 	@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
-/* #app {
-	font-family: Avenir, Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	color: #2a2a2a;
-	margin-top: 60px;
-} */
 </style>
