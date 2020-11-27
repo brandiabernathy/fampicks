@@ -32,8 +32,6 @@
 						<th colspan="10" class="table-header">
 							Weekly Picks
 						</th>
-						<!-- <th>Week Pts</th>
-						<th>Total Pts</th> -->
 					</tr>
 					<tr v-for="(picks, j) in week.picks" :key="j">
 						<td v-for="(pick, n) in picks" :key="n">
@@ -177,26 +175,26 @@ export default {
 
 				}
 				// console.log('this.curre')
-				this.current_week = 0;
-			let current = '#week'+this.current_week;
-			// let current2 = this.$refs['#week-'+this.current_week];
-			// console.log('this.current2', this.current2);
-			// let current = ('#week-3');
-			// console.log('this.$refs', this.$refs);
-			console.log('current week', this.current_week);
-			// this.$nextTick(() => {
-			// 	console.log('this.$refs.scrollTop', this.$refs[current][0].scrollHeight);
-			// });
-				$(document).ready(function () {
-					console.log('$(current).offset().top', $(current).offset().top);
-					console.log('$(current).height()', $(current).height())
-					// console.log('$current position', $(current).position.top);
-					// console.log('current', current);
-					// $('html, body').animate({scrollTop: this.$refs[current][0].offsetTop - 200} ,800);
-					$('html, body').delay(800).animate({
-						scrollTop: $(current).offset().top
-					}, 1000);
-				});
+			// 	this.current_week = 0;
+			// let current = '#week'+this.current_week;
+			// // let current2 = this.$refs['#week-'+this.current_week];
+			// // console.log('this.current2', this.current2);
+			// // let current = ('#week-3');
+			// // console.log('this.$refs', this.$refs);
+			// console.log('current week', this.current_week);
+			// // this.$nextTick(() => {
+			// // 	console.log('this.$refs.scrollTop', this.$refs[current][0].scrollHeight);
+			// // });
+			// 	$(document).ready(function () {
+			// 		console.log('$(current).offset().top', $(current).offset().top);
+			// 		console.log('$(current).height()', $(current).height())
+			// 		// console.log('$current position', $(current).position.top);
+			// 		// console.log('current', current);
+			// 		// $('html, body').animate({scrollTop: this.$refs[current][0].offsetTop - 200} ,800);
+			// 		$('html, body').delay(800).animate({
+			// 			scrollTop: $(current).offset().top
+			// 		}, 1000);
+			// 	});
 			// }
 			});
 		this.annie[0] = ['Annie (John)', 'Florida', 'Kentucky', 'Mississippi State*', 'Arkansas', 'Alabama', 'Texas A&M', 'Tennessee', 6, 6];
