@@ -7,16 +7,16 @@
 				<div class="game-container" v-for="game in week" :key="game.id">
 					<div class="team-container">
 						<div class="team">
-							<img :src="require('../assets/' + game.away.team + '.png')">
-							<span class="name" :class="{'win-team' : game.home.score < game.away.score}">
-								{{ game.away.team }}</span>
-							<span class="score" v-if="game.away.score != 0" :class="{'win-score' : game.home.score < game.away.score}">{{ game.away.score }}</span>
+							<img :src="require('../assets/' + game.away_team + '.png')">
+							<span class="name" :class="{'win-team' : game.home_score < game.away_score}">
+								{{ game.away_team }}</span>
+							<span class="score" v-if="game.away_score != 0" :class="{'win-score' : game.home_score < game.away_score}">{{ game.away_score }}</span>
 						</div>
 						<div class="team">
-							<img :src="require('../assets/' + game.home.team + '.png')">
-							<span class="name" :class="{'win-team' : game.home.score > game.away.score}">
-								{{ game.home.team }}</span>
-							<span class="score" v-if="game.home.score != 0" :class="{'win-score' : game.home.score > game.away.score}">{{ game.home.score }}</span>
+							<img :src="require('../assets/' + game.home_team + '.png')">
+							<span class="name" :class="{'win-team' : game.home_score > game.away_score}">
+								{{ game.home_team }}</span>
+							<span class="score" v-if="game.home_score != 0" :class="{'win-score' : game.home_score > game.away_score}">{{ game.home_score }}</span>
 						</div>
 					</div>
 					<div class="date">
@@ -82,25 +82,22 @@ export default {
 		console.log("this.new_picks", this.new_picks);
 		axios
 			.get('http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?limit=1000&dates=20200901-20201231&groups=8')
-			.then(res => {
-				console.log('res', res);
-				this.weeks = res.data.events
+			.then(response => {
+				console.log('response', response);
+				this.weeks = response.data.events
 				.filter(game => game.status.type.detail != 'Postponed')
-				.sort((a, b) => a.date < b.date)
+				.sort((a, b) => b.date - a.date)
 				.map(game => ({
 					id: game.id,
-					start_time: dayjs(game.date).utc(true).format('h:mma'),
 					date: dayjs(game.date).utc(true).format('MM/DD'),
+					start_time: dayjs(game.ddate).utc(true).format('h:mma'),
 					status: game.status,
-					home: {
-						team: game.competitions[0].competitors[0].team.location,
-						score: game.competitions[0].competitors[0].score,
-					},
-					away: {
-						team: game.competitions[0].competitors[1].team.location,
-						score: game.competitions[0].competitors[1].score,
-					}
+					home_team: game.competitions[0].competitors[0].team.location,
+					home_score: game.competitions[0].competitors[0].score,
+					away_team: game.competitions[0].competitors[1].team.location,
+					away_score: game.competitions[0].competitors[1].score
 				}))
+
 				.reduce((acc, item) => {
 					if (!acc[item.date]) {
 						acc[item.date] = [];
