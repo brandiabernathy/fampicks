@@ -10,18 +10,19 @@
 							<img :src="require('../assets/' + game.away_team + '.png')">
 							<span class="name" :class="{'win-team' : game.home_score < game.away_score}">
 								{{ game.away_team }}</span>
-							<span class="score" v-if="game.away_score != 0" :class="{'win-score' : game.home_score < game.away_score}">{{ game.away_score }}</span>
+							<span class="score" v-if="game.status.type.description != 'Scheduled'" :class="{'win-score' : game.home_score < game.away_score}">{{ game.away_score }}</span>
 						</div>
 						<div class="team">
 							<img :src="require('../assets/' + game.home_team + '.png')">
 							<span class="name" :class="{'win-team' : game.home_score > game.away_score}">
 								{{ game.home_team }}</span>
-							<span class="score" v-if="game.home_score != 0" :class="{'win-score' : game.home_score > game.away_score}">{{ game.home_score }}</span>
+							<span class="score" v-if="game.status.type.description != 'Scheduled'" :class="{'win-score' : game.home_score > game.away_score}">{{ game.home_score }}</span>
 						</div>
 					</div>
 					<div class="date">
-						<p>{{ game.date }}</p>
 						<p v-if="game.status.type.detail == 'Final'" class="game-state">Final</p>
+						<p v-else-if="game.status.type.shortDetail == 'TBD' && game.status.type.description == 'Scheduled'" class="game-state"> TBD </p>
+						<p v-else-if="game.status.type.description == 'In Progress'" class="game-state"> Q{{ game.status.period }} <br> {{ game.status.displayClock }} </p>
 						<p v-else class="game-state"> {{ game.start_time }} </p>
 					</div>
 				</div>
@@ -75,7 +76,7 @@ export default {
 				console.log('response', response);
 				this.weeks = response.data.events
 				.filter(game => game.status.type.detail != 'Postponed')
-				.sort((a, b) => a.date < b.date)
+				.sort((a, b) => a.date < b.date ? -1 : 1)
 				.map(game => ({
 					id: game.id,
 					date: dayjs(game.date).utc(true).format('MM/DD'),
@@ -165,8 +166,19 @@ export default {
 						}, 1000);
 					});
 				}
+
+				this.get_spreads();
 			});
 	},
+	methods: {
+		get_spreads() {
+			axios
+			.get('https://api.collegefootballdata.com/lines?year=2020&seasonType=regular&conference=SEC')
+			.then(response => {
+				console.log('spreads', response)
+			});
+		}
+	}
 }
 </script>
 
@@ -352,8 +364,14 @@ export default {
 	  padding-left: 20px;
   }
 
+  th:last-child:after {
+	  position: absolute;
+	  right: 20px;
+	  content: 'Pts \00a0\00a0\00a0\00a0\00a0\00a0 Total';
+  }
+
   td:last-child, td:nth-last-child(2) {
-	width: 4%;
+	width: 55px;
 	font-weight: 500;
   }
 
