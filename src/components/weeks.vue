@@ -145,8 +145,10 @@ export default {
 						this.current_week = i;
 					}
 
-					this.weeks[w].picks = {};
-					this.weeks[w].picks = this.picks[w];
+					if(this.weeks[w]) {
+						this.weeks[w].picks = {};
+						this.weeks[w].picks = this.picks[w];
+					}
 				}
 
 				if($(window).width() >= 1100){
