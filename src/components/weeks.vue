@@ -30,9 +30,11 @@
 			<div v-if="week.picks" class="fam-picks">
 				<table>
 					<tr class="table-header">
-						<th colspan="10" class="table-header">
+						<th :colspan="week.picks['Rudy'].picks.length - 1" class="table-header">
 							Weekly Picks
 						</th>
+						<th>Points</th>
+						<th>Total</th>
 					</tr>
 					<tr v-for="(picks, j) in week.picks" :key="j">
 						<td>{{ j }}</td>
@@ -360,6 +362,7 @@ export default {
   td {
 	padding: 10px 7px;
 	text-align: center;
+	white-space: nowrap;
   }
 
   td:first-child {
@@ -368,21 +371,8 @@ export default {
 	  border-right: 1px solid rgba(190, 190, 190, 0.6);
 	  padding-left: 20px;
   }
-
-  th:last-child:after {
-	  position: absolute;
-	  right: 20px;
-	  content: 'Pts \00a0\00a0\00a0\00a0\00a0\00a0 Total';
-  }
-
-  td:last-child, td:nth-last-child(2) {
-	width: 55px;
-	font-weight: 500;
-  }
-
-  td:nth-last-child(2) {
-	border-left: 1px solid rgba(190, 190, 190, 0.6);
-	border-right: 1px solid rgba(190, 190, 190, 0.6);
+  th:not(:first-child) {
+	  text-align: center;
   }
 
   .upset {
@@ -470,7 +460,7 @@ export default {
 		}
 
 		.game-container {
-			padding: 15px;
+			padding: 15px 0 15px 15px;
 			margin: 0 10px 20px;
 			width: calc(100% - 20px);
 		}

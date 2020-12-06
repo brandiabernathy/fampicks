@@ -43,7 +43,7 @@ const picks = {
 			upset: 'Vanderbilt',
 		},
 		'Blake': {
-			picks: ['Florida', 'Tennessee', 'Alabama', 'Kentucky*', 'Auburn', 'Mississippi State', 'LSU', 4, 8],
+			picks: ['Florida', 'Tennessee', 'Alabama', 'Kentucky', 'Auburn', 'Mississippi State', 'LSU', 4, 8],
 			upset: 'Kentucky',
 		},
 		'Brandi/Ocean': {
@@ -73,7 +73,7 @@ const picks = {
 			upset: 'Kentucky',
 		},
 		'Brandi/Ocean': {
-			picks: ['Florida', 'Tennessee', 'Alabama', 'Ole Miss', 'Auburn*', 'Mississippi State', 'LSU', 4, 14],
+			picks: ['Florida', 'Tennessee', 'Alabama', 'Ole Miss', 'Auburn', 'Mississippi State', 'LSU', 4, 14],
 			upset: 'Auburn',
 		}
 	},
@@ -105,7 +105,7 @@ const picks = {
 	},
 	'10/24': {
 		'Annie (John)': {
-			picks: ['Ole Miss*', 'Alabama', 'Kentucky', 'South Carolina', 1, 19],
+			picks: ['Ole Miss', 'Alabama', 'Kentucky', 'South Carolina', 1, 19],
 			upset: 'Ole Miss',
 		},
 		'Carolyn': {
