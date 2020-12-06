@@ -230,29 +230,54 @@ const picks = {
 	},
 	'11/28': {
 		'Annie (John)': {
-			picks: ['Florida', 'Missouri', 'Alabama', 'Ole Miss', 'Texas A&M', 'Georgia', '', ''],
+			picks: ['Florida', 'Missouri', 'Alabama', 'Ole Miss', 'Texas A&M', 'Georgia', '6', '40'],
 		},
 		'Carolyn': {
-			picks: ['Florida', 'Vanderbilt', 'Alabama', 'Mississippi State', 'Texas A&M', 'Georgia', '', ''],
+			picks: ['Florida', 'Vanderbilt', 'Alabama', 'Mississippi State', 'Texas A&M', 'Georgia', '4', '35'],
 			upset: 'Mississippi State',
 		},
 		'Rudy': {
-			picks: ['Florida', 'Missouri', 'Alabama', 'Mississippi State', 'Texas A&M', 'Georgia', '', ''],
+			picks: ['Florida', 'Missouri', 'Alabama', 'Mississippi State', 'Texas A&M', 'Georgia', '5', '37'],
 			upset: 'Mississippi State',
 		},
 		'Jenny': {
-			picks: ['Florida', 'Missouri', 'Alabama', 'Ole Miss', 'Texas A&M', 'South Carolina', '', ''],
+			picks: ['Florida', 'Missouri', 'Alabama', 'Ole Miss', 'Texas A&M', 'South Carolina', '5', '37'],
 			upset: 'South Carolina',
 		},
 		'Blake': {
-			picks: ['Florida', 'Missouri', 'Alabama', 'Ole Miss', 'LSU', 'Georgia', '', ''],
+			picks: ['Florida', 'Missouri', 'Alabama', 'Ole Miss', 'LSU', 'Georgia', '5', '28'],
 			upset: 'LSU',
 		},
 		'Brandi/Ocean': {
-			picks: ['Florida', 'Missouri', 'Alabama', 'Mississippi State', 'Texas A&M', 'Georgia', '', ''],
+			picks: ['Florida', 'Missouri', 'Alabama', 'Mississippi State', 'Texas A&M', 'Georgia', '5', '44'],
 			upset: 'Mississippi State',
 		}
-	}
+	},
+	'12/05': {
+		'Annie (John)': {
+			picks: ['Texas A&M', 'Arkansas¹', 'Florida', 'Kentucky', 'Alabama', '5', '45'],
+		},
+		'Carolyn': {
+			picks: ['Texas A&M', 'Arkansas¹', 'Florida', 'South Carolina', 'Alabama', '4', '39'],
+			upset: 'South Carolina',
+		},
+		'Rudy': {
+			picks: ['Texas A&M', 'Arkansas¹', 'Florida', 'South Carolina', 'Alabama', '4', '39'],
+			upset: 'South Carolina',
+		},
+		'Jenny': {
+			picks: ['Auburn', 'Missouri', 'Tennessee', 'Kentucky', 'LSU', '2', '39'],
+			upset: 'Auburn',
+		},
+		'Blake': {
+			picks: ['Texas A&M', 'Arkansas', 'Florida', 'Kentucky', 'Alabama', '5', '33'],
+			upset: 'Arkansas',
+		},
+		'Brandi/Ocean': {
+			picks: ['Auburn', 'Missouri', 'Florida', 'Kentucky', 'Alabama', '4', '48'],
+			upset: 'Auburn',
+		}
+	},
 }
 
 export default picks

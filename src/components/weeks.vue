@@ -135,10 +135,13 @@ export default {
 							w = '11/28'
 							break;
 						case 10:
-							w = '12/04'
+							w = '12/05'
 							break;
 						case 11:
-							w = '12/11'
+							w = '12/12'
+							break;
+						case 12:
+							w = '12/19'
 							break;
 					}
 					if(dayjs(now).isSameOrBefore(dayjs(w)) && !this.current_week) {
