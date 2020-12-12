@@ -75,7 +75,6 @@ export default {
 		axios
 			.get('http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?limit=1000&dates=20200901-20201231&groups=8')
 			.then(response => {
-				console.log('response', response);
 				this.weeks = response.data.events
 				.filter(game => game.status.type.detail != 'Postponed')
 				.sort((a, b) => a.date < b.date ? -1 : 1)
@@ -97,7 +96,6 @@ export default {
 					return acc;
 				}, {});
 
-				console.log('this.weeks', this.weeks);
 
 
 				let now = dayjs().format('MM/DD');
@@ -155,36 +153,38 @@ export default {
 						this.weeks[w].picks = this.picks[w];
 					}
 				}
-
+				this.current_week = 11;
 				if($(window).width() >= 1100){
-				let current = '#week'+this.current_week;
+					let current = 'week'+this.current_week;
 					$(document).ready(function () {
+						let this_week = document.getElementById(current);
 						$('html, body').delay(500).animate({
-							scrollTop: $(current).offset().top - 100
+							scrollTop: $(this_week).offset().top - 100
 						}, 2000);
 					});
 				}
 
 				if($(window).width() <= 500){
-				let current = '#week'+this.current_week;
+					let current = '#week'+this.current_week;
 					$(document).ready(function () {
+						let this_week = document.getElementById(current);
 						$('html, body').delay(500).animate({
-							scrollTop: $(current).offset().top
-						}, 2000);
+							scrollTop: $(this_week).offset().top
+						}, 2000)
 					});
 				}
 
-				this.get_spreads();
+				// this.get_spreads();
 			});
 	},
 	methods: {
-		get_spreads() {
-			axios
-			.get('https://api.collegefootballdata.com/lines?year=2020&seasonType=regular&conference=SEC')
-			.then(response => {
-				console.log('spreads', response)
-			});
-		}
+		// get_spreads() {
+		// 	axios
+		// 	.get('https://api.collegefootballdata.com/lines?year=2020&seasonType=regular&conference=SEC')
+		// 	.then(response => {
+		// 		console.log('spreads', response)
+		// 	});
+		// }
 	}
 }
 </script>
