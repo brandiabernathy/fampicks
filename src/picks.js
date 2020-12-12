@@ -278,6 +278,32 @@ const picks = {
 			upset: 'Auburn',
 		}
 	},
+	'12/12': {
+		'Annie (John)': {
+			picks: ['Alabama', 'Georgia', 'Tennessee', 'Florida', 'Mississippi State', '', '45'],
+			upset: 'Mississippi State',
+		},
+		'Carolyn': {
+			picks: ['Arkansas', 'Georgia', 'Tennessee', 'Florida', 'Auburn', '', '39'],
+			upset: 'Arkansas',
+		},
+		'Rudy': {
+			picks: ['Arkansas', 'Georgia', 'Tennessee', 'Florida', 'Mississippi State', '', '39'],
+			upset: 'Mississippi State',
+		},
+		'Jenny': {
+			picks: ['Arkansas', 'Missouri', 'Vanderbilt', 'Florida', 'Mississippi State', '', '39'],
+			upset: 'Mississippi State',
+		},
+		'Blake': {
+			picks: ['Arkansas', 'Georgia', 'Tennessee', 'Florida', 'Mississippi State', '', '33'],
+			upset: 'Arkansas',
+		},
+		'Brandi/Ocean': {
+			picks: ['Alabama', 'Missouri', 'Tennessee', 'Florida', 'Auburn', '', '48'],
+			upset: 'Missouri',
+		}
+	}
 }
 
 export default picks
