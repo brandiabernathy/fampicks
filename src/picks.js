@@ -262,7 +262,7 @@ const picks = {
 			upset: 'South Carolina',
 		},
 		'Rudy': {
-			picks: ['Texas A&M', 'Arkansas¹', 'Florida', 'South Carolina', 'Alabama', '4', '39'],
+			picks: ['Texas A&M', 'Arkansas¹', 'Florida', 'South Carolina', 'Alabama', '4', '41'],
 			upset: 'South Carolina',
 		},
 		'Jenny': {
@@ -288,7 +288,7 @@ const picks = {
 			upset: 'Arkansas',
 		},
 		'Rudy': {
-			picks: ['Arkansas', 'Georgia', 'Tennessee', 'Florida', 'Mississippi State', '', '39'],
+			picks: ['Arkansas', 'Georgia', 'Tennessee', 'Florida', 'Mississippi State', '', '41'],
 			upset: 'Mississippi State',
 		},
 		'Jenny': {
