@@ -165,7 +165,7 @@ export default {
 				}
 
 				if($(window).width() <= 500){
-					let current = '#week'+this.current_week;
+					let current = 'week'+this.current_week;
 					$(document).ready(function () {
 						let this_week = document.getElementById(current);
 						$('html, body').delay(500).animate({
