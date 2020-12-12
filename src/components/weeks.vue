@@ -160,7 +160,7 @@ export default {
 						let this_week = document.getElementById(current);
 						$('html, body').delay(500).animate({
 							scrollTop: $(this_week).offset().top - 100
-						}, 1000);
+						}, 2000);
 					});
 				}
 
@@ -170,7 +170,7 @@ export default {
 						let this_week = document.getElementById(current);
 						$('html, body').delay(500).animate({
 							scrollTop: $(this_week).offset().top
-						}, 1000)
+						}, 2000)
 					});
 				}
 
