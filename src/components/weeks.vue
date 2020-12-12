@@ -161,7 +161,7 @@ export default {
 					$(document).ready(function () {
 						$('html, body').delay(500).animate({
 							scrollTop: $(current).offset().top - 100
-						}, 1000);
+						}, 2000);
 					});
 				}
 
@@ -170,7 +170,7 @@ export default {
 					$(document).ready(function () {
 						$('html, body').delay(500).animate({
 							scrollTop: $(current).offset().top
-						}, 1000);
+						}, 2000);
 					});
 				}
 
