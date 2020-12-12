@@ -75,7 +75,6 @@
       width: 100%;
       box-shadow: 0 .6px 5px 1px rgba(0,0,0,0.2);
       position: fixed;
-      z-index: 100;
   	}
 
 	header span.color-red {
@@ -194,6 +193,7 @@
 
   @media all and (max-width: 500px) {
 	header {
+		position: relative;
 		height: 80px;
 	}
 
