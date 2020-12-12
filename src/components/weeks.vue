@@ -169,7 +169,7 @@ export default {
 				let current = '#week'+this.current_week;
 					$(document).ready(function () {
 						$('html, body').delay(500).animate({
-							scrollTop: $(current).offset().top - 80
+							scrollTop: $(current).offset().top
 						}, 1000);
 					});
 				}
@@ -452,7 +452,7 @@ export default {
 
 	@media all and (max-width: 500px) {
 		.season-container {
-			top: 80px;
+			top: 0;
 		}
 
 		.season-week {
