@@ -9,15 +9,15 @@
 		<div class="header-right">
 			<div class="fam">
 				<h2>Annie (John)</h2>
-				<p>45</p>
+				<p>48</p>
 			</div>
 			<div class="fam">
 				<h2>Carolyn</h2>
-				<p>39</p>
+				<p>42</p>
 			</div>
 			<div class="fam">
 				<h2>Rudy</h2>
-				<p>41</p>
+				<p>43</p>
 			</div>
 			<div class="fam">
 				<h2>Jenny</h2>
@@ -25,11 +25,11 @@
 			</div>
 			<div class="fam">
 				<h2>Blake</h2>
-				<p>33</p>
+				<p>36</p>
 			</div>
 			<div class="fam mobile-fam">
 				<h2 class="fam-lead">Brandi/Ocean</h2>
-				<p class="score-lead">48</p>
+				<p class="score-lead">51</p>
 			</div>
 			<div class="leader">
 				<p>*LEADER*</p>

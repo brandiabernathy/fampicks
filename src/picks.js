@@ -280,27 +280,26 @@ const picks = {
 	},
 	'12/12': {
 		'Annie (John)': {
-			picks: ['Alabama', 'Georgia', 'Tennessee', 'Florida', 'Mississippi State', '', '45'],
+			picks: ['Alabama', 'Georgia', 'Tennessee', 'Florida', 'Mississippi State', '3', '48'],
 			upset: 'Mississippi State',
 		},
 		'Carolyn': {
-			picks: ['Arkansas', 'Georgia', 'Tennessee', 'Florida', 'Auburn', '', '39'],
+			picks: ['Arkansas', 'Georgia', 'Tennessee', 'Florida', 'Auburn', '3', '42'],
 			upset: 'Arkansas',
 		},
 		'Rudy': {
-			picks: ['Arkansas', 'Georgia', 'Tennessee', 'Florida', 'Mississippi State', '', '41'],
+			picks: ['Arkansas', 'Georgia', 'Tennessee', 'Florida', 'Mississippi State', '2', '43'],
 			upset: 'Mississippi State',
 		},
 		'Jenny': {
-			picks: ['Arkansas', 'Missouri', 'Vanderbilt', 'Florida', 'Mississippi State', '', '39'],
+			picks: ['Arkansas', 'Missouri', 'Vanderbilt', 'Florida', 'Mississippi State', '0', '39'],
 			upset: 'Mississippi State',
 		},
 		'Blake': {
-			picks: ['Arkansas', 'Georgia', 'Tennessee', 'Florida', 'Mississippi State', '', '33'],
-			upset: 'Arkansas',
+			picks: ['Alabama', 'Georgia', 'Tennessee', 'Florida', 'Mississippi State', '3', '36'],
 		},
 		'Brandi/Ocean': {
-			picks: ['Alabama', 'Missouri', 'Tennessee', 'Florida', 'Auburn', '', '48'],
+			picks: ['Alabama', 'Missouri', 'Tennessee', 'Florida', 'Auburn', '3', '51'],
 			upset: 'Missouri',
 		}
 	}
