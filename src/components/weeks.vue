@@ -153,7 +153,7 @@ export default {
 						this.weeks[w].picks = this.picks[w];
 					}
 				}
-				this.current_week = 11;
+				this.current_week = 12;
 				if($(window).width() >= 1100){
 					let current = 'week'+this.current_week;
 					$(document).ready(function () {
