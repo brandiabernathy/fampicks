@@ -100,7 +100,7 @@ export default {
 
 				let now = dayjs().format('MM/DD');
 
-				for(let i = 0; i < Object.keys(this.weeks).length - 1; i++) {
+				for(let i = 0; i < Object.keys(this.weeks).length; i++) {
 
 					let w;
 					switch (i) {
