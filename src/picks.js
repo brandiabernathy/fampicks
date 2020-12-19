@@ -302,6 +302,30 @@ const picks = {
 			picks: ['Alabama', 'Missouri', 'Tennessee', 'Florida', 'Auburn', '3', '51'],
 			upset: 'Missouri',
 		}
+	},
+	'12/19': {
+		'Annie (John)': {
+			picks: ['Texas A&M', 'LSU', 'Missouri', 'Alabama', '', '48'],
+			upset: 'LSU',
+		},
+		'Carolyn': {
+			picks: ['Texas A&M', 'Ole Miss', 'Missouri', 'Alabama', '', '42'],
+		},
+		'Rudy': {
+			picks: ['Texas A&M', 'LSU', 'Missouri', 'Alabama', '', '43'],
+			upset: 'LSU',
+		},
+		'Jenny': {
+			picks: ['Tennessee', 'LSU', 'Mississippi State', 'Alabama', '', '39'],
+			upset: 'Mississippi State',
+		},
+		'Blake': {
+			picks: ['Texas A&M', 'Ole Miss', 'Missouri', 'Alabama', '', '36'],
+		},
+		'Brandi/Ocean': {
+			picks: ['Texas A&M', 'LSU', 'Missouri', 'Alabama', '', '51'],
+			upset: 'LSU',
+		}
 	}
 }
 
