@@ -376,6 +376,7 @@ export default {
   }
 
   .upset {
+	  font-weight: 500;
 	  color:rgb(166,12,49);
   }
 
