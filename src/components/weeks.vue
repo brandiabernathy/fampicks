@@ -73,7 +73,7 @@ export default {
 	created() {
 		this.picks = picks.default;
 		axios
-			.get('http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?limit=1000&dates=20200901-20201231&groups=8')
+			.get('http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?limit=1000&dates=20200901-20201219&groups=8')
 			.then(response => {
 				this.weeks = response.data.events
 				.filter(game => game.status.type.detail != 'Postponed')
@@ -153,39 +153,29 @@ export default {
 						this.weeks[w].picks = this.picks[w];
 					}
 				}
-				this.current_week = 12;
-				if($(window).width() >= 1100){
-					let current = 'week'+this.current_week;
-					$(document).ready(function () {
-						let this_week = document.getElementById(current);
-						$('html, body').delay(500).animate({
-							scrollTop: $(this_week).offset().top - 100
-						}, 2000);
-					});
-				}
+				// -- when in season, scroll to week --
+				//
+				// if($(window).width() >= 1100){
+				// 	let current = 'week'+this.current_week;
+				// 	$(document).ready(function () {
+				// 		let this_week = document.getElementById(current);
+				// 		$('html, body').delay(500).animate({
+				// 			scrollTop: $(this_week).offset().top - 100
+				// 		}, 2000);
+				// 	});
+				// }
 
-				if($(window).width() <= 500){
-					let current = 'week'+this.current_week;
-					$(document).ready(function () {
-						let this_week = document.getElementById(current);
-						$('html, body').delay(500).animate({
-							scrollTop: $(this_week).offset().top
-						}, 2000)
-					});
-				}
-
-				// this.get_spreads();
+				// if($(window).width() <= 500){
+				// 	let current = 'week'+this.current_week;
+				// 	$(document).ready(function () {
+				// 		let this_week = document.getElementById(current);
+				// 		$('html, body').delay(500).animate({
+				// 			scrollTop: $(this_week).offset().top
+				// 		}, 2000)
+				// 	});
+				// }
 			});
 	},
-	methods: {
-		// get_spreads() {
-		// 	axios
-		// 	.get('https://api.collegefootballdata.com/lines?year=2020&seasonType=regular&conference=SEC')
-		// 	.then(response => {
-		// 		console.log('spreads', response)
-		// 	});
-		// }
-	}
 }
 </script>
 
