@@ -1,8 +1,8 @@
 
 <template>
 	<div class="season-container">
-		<div v-for="(week, i, index) in weeks" :id="'week'+index" :key="index" :ref="'week'+index">
-			<p class="season-week">Week of <span class="season-week-date">{{ i }}</span></p>
+		<div v-for="(week, i) in weeks" :id="'week'+i" :key="i">
+			<p class="season-week">Week of <span class="season-week-date">{{ week[0].date }}</span></p>
 			<div class="season-weekly-container">
 				<div class="game-container" v-for="game in week" :key="game.id">
 					<div class="team-container">
@@ -75,7 +75,7 @@ export default {
 		axios
 			.get('http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?limit=1000&dates=20200901-20201220&groups=8')
 			.then(response => {
-				this.weeks = response.data.events
+				this.games = response.data.events
 				.filter(game => game.status.type.detail != 'Postponed')
 				.sort((a, b) => a.date < b.date ? -1 : 1)
 				.map(game => ({
@@ -87,70 +87,28 @@ export default {
 					home_score: game.competitions[0].competitors[0].score,
 					away_team: game.competitions[0].competitors[1].team.location,
 					away_score: game.competitions[0].competitors[1].score
-				}))
-				.reduce((acc, item) => {
-					if (!acc[item.date]) {
-						acc[item.date] = [];
-					}
-					acc[item.date].push(item);
-					return acc;
-				}, {});
+				}));
 
-
+				 this.weeks = Object.values(
+					this.games.reduce((acc, item) => {
+						(acc[item.date] = acc[item.date] || []).push(item);
+						return acc;
+					}, {})
+				);
 
 				let now = dayjs().format('MM/DD');
 
 				for(let i = 0; i < Object.keys(this.weeks).length; i++) {
+					// -- when in season, figure out the current week --
+					//
+					// let date = this.weeks[i][0].date;
+					// if(dayjs(now).isSameOrBefore(dayjs(date)) && !this.current_week) {
+					// 	this.current_week = i;
+					// }
 
-					let w;
-					switch (i) {
-						case 0:
-							w = '09/26';
-							break;
-						case 1:
-							w = '10/03'
-							break;
-						case 2:
-							w = '10/10'
-							break;
-						case 3:
-							w = '10/17'
-							break;
-						case 4:
-							w = '10/24'
-							break;
-						case 5:
-							w = '10/31'
-							break;
-						case 6:
-							w = '11/07'
-							break;
-						case 7:
-							w = '11/14'
-							break;
-						case 8:
-							w = '11/21'
-							break;
-						case 9:
-							w = '11/28'
-							break;
-						case 10:
-							w = '12/05'
-							break;
-						case 11:
-							w = '12/12'
-							break;
-						case 12:
-							w = '12/19'
-							break;
-					}
-					if(dayjs(now).isSameOrBefore(dayjs(w)) && !this.current_week) {
-						this.current_week = i;
-					}
-
-					if(this.weeks[w]) {
-						this.weeks[w].picks = {};
-						this.weeks[w].picks = this.picks[w];
+					if(this.weeks[i]) {
+						this.weeks[i].picks = {};
+						this.weeks[i].picks = this.picks[i];
 					}
 				}
 				// -- when in season, scroll to week --

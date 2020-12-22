@@ -1,5 +1,5 @@
 const picks = {
-	'09/26': {
+	0: {
 		'Annie (John)': {
 			picks: ['Florida', 'Kentucky', 'Mississippi State', 'Arkansas', 'Alabama', 'Texas A&M', 'Tennessee', 6, 6],
 			upset: 'Mississippi State',
@@ -25,7 +25,7 @@ const picks = {
 			upset: 'Ole Miss',
 		}
 	},
-	'10/03' : {
+	1: {
 		'Annie (John)': {
 			picks: ['Florida', 'Tennessee', 'Alabama', 'Kentucky', 'Georgia', 'Arkansas', 'LSU', 6, 12],
 			upset: 'Kentucky',
@@ -51,7 +51,7 @@ const picks = {
 			upset: 'Auburn',
 		}
 	},
-	'10/10': {
+	2: {
 		'Annie (John)': {
 			picks: ['Florida', 'Vanderbilt', 'LSU', 'Georgia', 'Arkansas', 'Alabama', 'Kentucky', 3, 15],
 			upset: 'Arkansas',
@@ -77,7 +77,7 @@ const picks = {
 			upset: 'Auburn',
 		}
 	},
-	'10/17': {
+	3: {
 		'Annie (John)': {
 			picks: ['South Carolina', 'Tennessee', 'Ole Miss', 'Texas A&M', 'Georgia', 3, 18],
 			upset: 'South Carolina',
@@ -103,7 +103,7 @@ const picks = {
 			upset: 'Arkansas',
 		}
 	},
-	'10/24': {
+	4: {
 		'Annie (John)': {
 			picks: ['Ole Miss', 'Alabama', 'Kentucky', 'South Carolina', 1, 19],
 			upset: 'Ole Miss',
@@ -128,7 +128,7 @@ const picks = {
 			upset: 'Missouri',
 		}
 	},
-	'10/31': {
+	5: {
 		'Annie (John)': {
 			picks: ['Georgia', 'LSU', 'Ole Miss', 'Alabama', 'Texas A&M', 'Florida', 5, 24],
 		},
@@ -153,7 +153,7 @@ const picks = {
 			upset: 'Auburn',
 		}
 	},
-	'11/07': {
+	6: {
 		'Annie (John)': {
 			picks: ['Florida', 'Vanderbilt', 'Texas A&M', 'Arkansas', 4, 28],
 			upset: 'Florida',
@@ -178,7 +178,7 @@ const picks = {
 			upset: 'Arkansas',
 		}
 	},
-	'11/14': {
+	7: {
 		'Annie (John)': {
 			picks: ['Kentucky', 'Arkansas', 'Ole Miss', 2, 30],
 			upset: 'Arkansas',
@@ -202,7 +202,7 @@ const picks = {
 			picks: ['Kentucky', 'Florida', 'Ole Miss', 3, 34],
 		}
 	},
-	'11/21': {
+	8: {
 		'Annie (John)': {
 			picks: ['Florida', 'Arkansas', 'Alabama', 'Auburn', 'Georgia', 'South Carolina', 4, 34],
 			upset: 'South Carolina',
@@ -228,7 +228,7 @@ const picks = {
 			upset: 'Arkansas',
 		}
 	},
-	'11/28': {
+	9: {
 		'Annie (John)': {
 			picks: ['Florida', 'Missouri', 'Alabama', 'Ole Miss', 'Texas A&M', 'Georgia', '6', '40'],
 		},
@@ -253,7 +253,7 @@ const picks = {
 			upset: 'Mississippi State',
 		}
 	},
-	'12/05': {
+	10: {
 		'Annie (John)': {
 			picks: ['Texas A&M', 'Arkansas¹', 'Florida', 'Kentucky', 'Alabama', '5', '45'],
 		},
@@ -278,7 +278,7 @@ const picks = {
 			upset: 'Auburn',
 		}
 	},
-	'12/12': {
+	11: {
 		'Annie (John)': {
 			picks: ['Alabama', 'Georgia', 'Tennessee', 'Florida', 'Mississippi State', '3', '48'],
 			upset: 'Mississippi State',
@@ -303,7 +303,7 @@ const picks = {
 			upset: 'Missouri',
 		}
 	},
-	'12/19': {
+	12: {
 		'Annie (John)': {
 			picks: ['Texas A&M', 'LSU', 'Missouri', 'Alabama', '4', '52'],
 			upset: 'LSU',
@@ -329,4 +329,4 @@ const picks = {
 	}
 }
 
-export default picks
+export default picks;
