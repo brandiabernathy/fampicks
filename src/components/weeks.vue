@@ -5,6 +5,7 @@
 			<p class="season-week">Week of <span class="season-week-date">{{ week[0].date }}</span></p>
 			<div class="season-weekly-container">
 				<div class="game-container" v-for="game in week" :key="game.id">
+					<!-- {{ game }} -->
 					<div class="team-container">
 						<div class="team">
 							<img :src="require('../assets/' + game.away_team + '.png')">
@@ -30,7 +31,7 @@
 			<div v-if="week.picks" class="fam-picks">
 				<table>
 					<tr class="table-header">
-						<th :colspan="week.picks['Rudy'].picks.length - 1" class="table-header">
+						<th :colspan="week.picks[2].picks.length - 1" class="table-header">
 							Weekly Picks
 						</th>
 						<th>Points</th>
@@ -68,6 +69,31 @@ export default {
 			picks: '',
 			weeks: [],
 			games: [],
+			week_total: [],
+			total_points: {
+				0: 0,
+				1: 0,
+				2: 0,
+				3: 0,
+				4: 0,
+				5: 0,
+			},
+			// week_total: {
+			// 	annie: '',
+			// 	carolyn: '',
+			// 	rudy: '',
+			// 	jenny: '',
+			// 	blake: '',
+			// 	brandi: '',
+			// },
+			// total_points: {
+			// 	annie: '',
+			// 	carolyn: '',
+			// 	rudy: '',
+			// 	jenny: '',
+			// 	blake: '',
+			// 	brandi: '',
+			// }
 		};
 	},
 	created() {
@@ -75,6 +101,7 @@ export default {
 		axios
 			.get('http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?limit=1000&dates=20200901-20201220&groups=8')
 			.then(response => {
+				console.log('response', response);
 				this.games = response.data.events
 				.filter(game => game.status.type.detail != 'Postponed')
 				.sort((a, b) => a.date < b.date ? -1 : 1)
@@ -109,6 +136,24 @@ export default {
 					if(this.weeks[i]) {
 						this.weeks[i].picks = {};
 						this.weeks[i].picks = this.picks[i];
+					}
+
+					for(let g = 0; g < this.weeks[i].length; g++) {
+						// find winning team
+						if(this.weeks[i][g].away_score > this.weeks[i][g].home_score) {
+							this.weeks[i][g].winner = this.weeks[i][g].away_team;
+						}
+						else {
+							this.weeks[i][g].winner = this.weeks[i][g].home_team;
+						}
+						for (var p in this.picks[i]) {
+							for (let n = 0; n < this.picks[i][p].picks.length; n++) {
+								// did user's pick match the winner of that game?
+								if(this.picks[i][p].picks[n] == this.weeks[i][g].winner) {
+									console.log('this.weeks[i][g].winner', this.weeks[i][g].winner);
+								}
+							}
+						}
 					}
 				}
 				// -- when in season, scroll to week --
