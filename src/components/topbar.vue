@@ -8,16 +8,16 @@
 		</div>
 		<div class="header-right">
 			<div class="fam">
-				<h2>Annie (John)</h2>
-				<p>52</p>
+				<h2>Annie</h2>
+				<p>51</p>
 			</div>
 			<div class="fam">
 				<h2>Carolyn</h2>
-				<p>44</p>
+				<p>43</p>
 			</div>
 			<div class="fam">
 				<h2>Rudy</h2>
-				<p>47</p>
+				<p>46</p>
 			</div>
 			<div class="fam">
 				<h2>Jenny</h2>
@@ -25,10 +25,10 @@
 			</div>
 			<div class="fam">
 				<h2>Blake</h2>
-				<p>38</p>
+				<p>37</p>
 			</div>
 			<div class="fam mobile-fam">
-				<h2 class="fam-lead">Brandi/Ocean</h2>
+				<h2 class="fam-lead">Brandi</h2>
 				<p class="score-lead">55</p>
 			</div>
 			<div class="leader">
@@ -152,7 +152,7 @@
 		position: relative;
 		left: 50%;
 		transform: translateX(-50%);
-		width: 25%;
+		width: 45%;
 	}
 
   @media all and (max-width: 1100px) {

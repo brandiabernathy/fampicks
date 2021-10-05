@@ -30,14 +30,14 @@
 			<div v-if="week.picks" class="fam-picks">
 				<table>
 					<tr class="table-header">
-						<th :colspan="week.picks[2].picks.length - 1" class="table-header">
+						<th :colspan="week.picks[2].picks.length + 1" class="table-header">
 							Weekly Picks
 						</th>
 						<th>Points</th>
 						<th>Total</th>
 					</tr>
 					<tr v-for="(picks, j) in week.picks" :key="j">
-						<td v-if="j == 0">John</td>
+						<td v-if="j == 0">Annie</td>
 						<td v-else-if="j == 1">Carolyn</td>
 						<td v-else-if="j == 2">Rudy</td>
 						<td v-else-if="j == 3">Jenny</td>
@@ -46,8 +46,8 @@
 						<td v-for="(pick, n) in picks.picks" :key="n" :class="{'upset' : pick == picks.upset}">
 							{{ pick }}
 						</td>
-						<!-- <td>{{ weekly_points[j] }}</td>
-						<td>{{ total_points[j] }}</td> -->
+						<td>{{ weekly_points[i][j] }}</td>
+						<td>{{ total_points[i][j] }}</td>
 					</tr>
 				</table>
 			</div>
@@ -76,30 +76,7 @@ export default {
 			weeks: [],
 			games: [],
 			weekly_points: {},
-			total_points: {
-				0: 0,
-				1: 0,
-				2: 0,
-				3: 0,
-				4: 0,
-				5: 0,
-			},
-			// week_total: {
-			// 	annie: '',
-			// 	carolyn: '',
-			// 	rudy: '',
-			// 	jenny: '',
-			// 	blake: '',
-			// 	brandi: '',
-			// },
-			// total_points: {
-			// 	annie: '',
-			// 	carolyn: '',
-			// 	rudy: '',
-			// 	jenny: '',
-			// 	blake: '',
-			// 	brandi: '',
-			// }
+			total_points: {},
 		};
 	},
 	created() {
@@ -130,8 +107,6 @@ export default {
 				);
 
 				let now = dayjs().format('MM/DD');
-				// console.log('weekly_points', this.weekly_points);
-				// console.log("total_points", this.total_points);
 
 				// split games into weeks
 				for(let w = 0; w < Object.keys(this.weeks).length; w++) {
@@ -146,10 +121,13 @@ export default {
 						this.weeks[w].picks = {};
 						this.weeks[w].picks = this.picks[w];
 						this.weekly_points[w] = {};
+						this.total_points[w] = {};
 					}
 
+					// initialize every weekly player points at 0
 					for (let p in this.picks[w]) {
 						this.weekly_points[w][p] = 0;
+						this.total_points[w][p] = 0;
 					}
 
 					// find info for each game within a week
@@ -164,51 +142,31 @@ export default {
 
 						// picks are divided by person by week
 						for (let p in this.picks[w]) {
-							// this.weekly_points[w][p] = '';
-							// console.log("this.weekly_points", this.weekly_points);
-							// console.log('this.picks[w][p].upset', this.picks[w][p].upset);
-							// console.log('w', w);
-							// console.log('g', g);
-							// console.log('p', p);
-							// console.log('t', t);
 							// find each picked team in the user picks list
 							for (let t = 0; t < this.picks[w][p].picks.length; t++) {
-								// console.log('this.total_points', this.total_points);
-								// console.log('this.picks[w][p].picks', this.picks[w][p].picks);
-								// console.log('this.picks[w]', this.picks[w]);
-								// console.log('this.picks[w][p]', this.picks[w][p]);
-								// console.log('this.picks[w][p].picks[t]', this.picks[w][p].picks[t]);
-								// console.log('this.picks[w][p].picks[t]', this.picks[w][p].picks[w]);
 
 								// did user's pick match the winner of that game?
 								if(this.picks[w][p].picks[t] == this.weeks[w][g].winner) {
-									// console.log('this.weeks[w][g].winner', this.weeks[w][g].winner);
-									// console.log('this.total_points', this.total_points);
-									console.log('w', w);
-									// console.log('g', g);
-									console.log('p', p);
-									console.log('-----');
-									// console.log('t', t);
 									// add a point if so
 									this.weekly_points[w][p]++;
-									// console.log('this.weekly_points', this.weekly_points);
-									// console.log('this.weekly_points[w][p]', this.weekly_points[w][p])
-									this.total_points[p]+= 1;
 
 									// // did the user's upset pick win?
 									if(this.picks[w][p].upset && (this.picks[w][p].upset == this.weeks[w][g].winner)) {
-									// console.log('this.picks[w][p].upset', this.picks[w][p].upset);
 										this.weekly_points[w][p]++;
-										this.total_points[p]++;
 									}
 								}
-								
+							}
+							//tally total points each week as well
+							if(w == 0) {
+								this.total_points[w][p] = this.weekly_points[w][p];
+							}
+							else {
+								let last_week = w-1;
+								this.total_points[w][p] = this.total_points[last_week][p] + this.weekly_points[w][p];
 							}
 						}
 					}
 				}
-				console.log('weekly points', this.weekly_points);
-				console.log('total_points', this.total_points);
 				// -- when in season, scroll to week --
 				//
 				// if($(window).width() >= 1100){
