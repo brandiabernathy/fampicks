@@ -1,0 +1,372 @@
+{
+    "picks": [
+        {
+            "week": 0,
+            "weekly_picks": {
+                "annie": {
+                    "picks": ["Florida", "Kentucky", "Mississippi State", "Arkansas", "Alabama", "Texas A&M", "Tennessee"],
+                    "upset": "Mississippi State"
+                },
+                "carolyn": {
+                    "picks": ["Florida", "Auburn", "LSU", "Arkansas", "Alabama", "Texas A&M", "South Carolina"],
+                    "upset": "Arkansas"
+                },
+                "rudy": {
+                    "picks": ["Florida", "Kentucky", "LSU", "Arkansas", "Alabama", "Texas A&M", "Tennessee"],
+                    "upset": "Arkansas"
+                },
+                "jenny": {
+                    "picks": ["Ole Miss", "Auburn", "LSU", "Arkansas", "Missouri", "Texas A&M", "South Carolina"],
+                    "upset": "Arkansas"
+                },
+                "blake": {
+                    "picks": ["Florida", "Kentucky", "LSU", "Georgia", "Alabama", "Texas A&M", "South Carolina"],
+                    "upset": "Kentucky"
+                },
+                "brandi": {
+                    "picks": ["Ole Miss", "Auburn", "LSU", "Georgia", "Alabama", "Texas A&M", "Tennessee"],
+                    "upset": "Ole Miss"
+                }
+            }
+        },
+        {
+            "week": 1,
+            "weekly_picks": {
+                "annie": {
+                    "picks": ["Florida", "Tennessee", "Alabama", "Kentucky", "Georgia", "Arkansas", "LSU"],
+                    "upset": "Kentucky"
+                },
+                "carolyn": {
+                    "picks": ["Florida", "Tennessee", "Alabama", "Ole Miss", "Auburn", "Arkansas", "LSU"],
+                    "upset": "Arkansas"
+                },
+                "rudy": {
+                    "picks": ["Florida", "Tennessee", "Alabama", "Kentucky", "Auburn", "Arkansas", "LSU"],
+                    "upset": "Arkansas"
+                },
+                "jenny": {
+                    "picks": ["Florida", "Tennessee", "Alabama", "Kentucky", "Georgia", "Mississippi State", "Vanderbilt"],
+                    "upset": "Vanderbilt"
+                },
+                "blake": {
+                    "picks": ["Florida", "Tennessee", "Alabama", "Kentucky", "Auburn", "Mississippi State", "LSU"],
+                    "upset": "Kentucky"
+                },
+                "brandi": {
+                    "picks": ["Florida", "Tennessee", "Alabama", "Ole Miss", "Auburn", "Mississippi State", "LSU"],
+                    "upset": "Auburn"
+                }
+            }
+        },
+        {
+            "week": 2,
+            "weekly_picks": {
+                "annie": {
+                    "picks": ["Florida", "Vanderbilt", "LSU", "Georgia", "Arkansas", "Alabama", "Kentucky"],
+                    "upset": "Arkansas"
+                },
+                "carolyn": {
+                    "picks": ["Florida", "South Carolina", "LSU", "Georgia", "Arkansas", "Alabama", "Kentucky"],
+                    "upset": "Arkansas"
+                },
+                "rudy": {
+                    "picks": ["Florida", "South Carolina", "LSU", "Georgia", "Arkansas", "Alabama", "Mississippi State"],
+                    "upset": "Arkansas"
+                },
+                "jenny": {
+                    "picks": ["Texas A&M", "Vanderbilt", "LSU", "Georgia", "Auburn", "Ole Miss", "Kentucky"],
+                    "upset": "Texas A&M"
+                },
+                "blake": {
+                    "picks": ["", "South Carolina", "LSU", "Tennessee", "Auburn", "Alabama", "Kentucky"],
+                    "upset": "Tennessee"
+                },
+                "brandi": {
+                    "picks": ["Florida", "Vanderbilt", "LSU", "Georgia", "Auburn", "Alabama", "Kentucky"],
+                    "upset": "Vanderbilt"
+                }
+            }
+        },
+        {
+            "week": 3,
+            "weekly_picks": {
+                "annie": {
+                    "picks": ["South Carolina", "Tennessee", "Ole Miss", "Texas A&M", "Georgia"],
+                    "upset": "South Carolina"
+                },
+                "carolyn": {
+                    "picks": ["Auburn", "Kentucky", "Arkansas", "Mississippi State", "Alabama"],
+                    "upset": "Arkansas"
+                },
+                "rudy": {
+                    "picks": ["South Carolina", "Tennessee", "Arkansas", "Texas A&M", "Alabama"],
+                    "upset": "South Carolina"
+                },
+                "jenny": {
+                    "picks": ["South Carolina", "Tennessee", "Arkansas", "Mississippi State", "Alabama"],
+                    "upset": "Arkansas"
+                },
+                "blake": {
+                    "picks": ["Auburn", "Tennessee", "Ole Miss", "Mississippi State", "Georgia"],
+                    "upset": "Mississippi State"
+                },
+                "brandi": {
+                    "picks": ["Auburn", "Tennessee", "Arkansas", "Texas A&M", "Georgia"],
+                    "upset": "Arkansas"
+                }
+            }
+        },
+        {
+            "week": 4,
+            "weekly_picks": {
+                "annie": {
+                    "picks": ["Ole Miss", "Alabama", "Kentucky", "South Carolina"],
+                    "upset": "Ole Miss"
+                },
+                "carolyn": {
+                    "picks": ["Ole Miss", "Alabama", "Kentucky", "South Carolina"],
+                    "upset": "South Carolina"
+                },
+                "rudy": {
+                    "picks": 	["Ole Miss", "Alabama", "Kentucky", "South Carolina"],
+                    "upset": "Ole Miss"
+                },
+                "jenny": {
+                    "picks": 	["Ole Miss", "Tennessee", "Missouri", "LSU"],
+                    "upset": "Ole Miss"
+                },
+                "blake": {
+                    "picks": ["", "", "", ""]
+                },
+                "brandi": {
+                    "picks": ["Auburn", "Alabama", "Missouri", "South Carolina"],
+                    "upset": "Missouri"
+                }
+            }
+        },
+        {
+            "week": 5,
+            "weekly_picks": {
+                "annie": {
+                    "picks": ["Georgia", "LSU", "Ole Miss", "Alabama", "Texas A&M", "Florida"]
+                },
+                "carolyn": {
+                    "picks": 	["Kentucky", "Auburn", "Vanderbilt", "Alabama", "Arkansas", "Florida"],
+                    "upset": "Arkansas"
+                },
+                "rudy": {
+                    "picks": ["Georgia", "LSU", "Ole Miss", "Alabama", "Arkansas", "Missouri"],
+                    "upset": "Arkansas"
+                },
+                "jenny": {
+                    "picks": ["Kentucky", "Auburn", "Vanderbilt", "Alabama", "Texas A&M", "Florida"],
+                    "upset": "Auburn"
+                },
+                "blake": {
+                    "picks": ["Georgia", "Auburn", "Ole Miss", "Alabama", "Arkansas", "Missouri"],
+                    "upset": "Missouri"
+                },
+                "brandi": {
+                    "picks": ["Georgia", "Auburn", "Ole Miss", "Alabama", "Texas A&M", "Missouri"],
+                    "upset": "Auburn"
+                }
+            }
+        },
+        {
+            "week": 6,
+            "weekly_picks": {
+                "annie": {
+                    "picks": ["Florida", "Vanderbilt", "Texas A&M", "Arkansas"],
+                    "upset": "Florida"
+                },
+                "carolyn": {
+                    "picks": ["Georgia", "Vanderbilt", "Texas A&M", "Arkansas"],
+                    "upset": "Arkansas"
+                },
+                "rudy": {
+                    "picks": ["Georgia", "Mississippi State", "Texas A&M", "Arkansas"],
+                    "upset": "Arkansas"
+                },
+                "jenny": {
+                    "picks": ["Florida", "Mississippi State", "South Carolina", "Arkansas"],
+                    "upset": "Arkansas"
+                },
+                "blake": {
+                    "picks": ["", "", "", ""]
+                },
+                "brandi": {
+                    "picks": ["Georgia", "Mississippi State", "Texas A&M", "Arkansas"],
+                    "upset": "Arkansas"
+                }
+            }
+        },
+        {
+            "week": 7,
+            "weekly_picks": {
+                "annie": {
+                    "picks": ["Kentucky", "Arkansas", "Ole Miss"],
+                    "upset": "Arkansas"
+                },
+                "carolyn": {
+                    "picks": ["Vanderbilt", "Arkansas", "South Carolina"],
+                    "upset": "Arkansas"
+                },
+                "rudy": {
+                    "picks": ["Kentucky", "Arkansas", "Ole Miss"],
+                    "upset": "Arkansas"
+                },
+                "jenny": {
+                    "picks": ["Kentucky", "Florida", "Ole Miss"]
+                },
+                "blake": {
+                    "picks": ["Kentucky", "Arkansas", "Ole Miss"],
+                    "upset": "Arkansas"
+                },
+                "brandi": {
+                    "picks": ["Kentucky", "Florida", "Ole Miss"]
+                }
+            }
+        },
+        {
+            "week": 8,
+            "weekly_picks": {
+                "annie": {
+                    "picks": ["Florida", "Arkansas", "Alabama", "Auburn", "Georgia", "South Carolina"],
+                    "upset": "South Carolina"
+                },
+                "carolyn": {
+                    "picks": ["Florida", "Arkansas", "Alabama", "Auburn", "Georgia", "Missouri"],
+                    "upset": "Arkansas"
+                },
+                "rudy": {
+                    "picks": ["Florida", "Arkansas", "Alabama", "Auburn", "Georgia", "South Carolina"],
+                    "upset": "South Carolina"
+                },
+                "jenny": {
+                    "picks": ["Vanderbilt", "Arkansas", "Alabama", "Auburn", "Georgia", "South Carolina"],
+                    "upset": "Arkansas"
+                },
+                "blake": {
+                    "picks": ["Florida", "Arkansas", "Alabama", "Auburn", "Georgia", "Missouri"],
+                    "upset": "Arkansas"
+                },
+                "brandi": {
+                    "picks": ["Florida", "Arkansas", "Alabama", "Auburn", "Georgia", "Missouri"],
+                    "upset": "Arkansas"
+                }
+            }
+        },
+        {
+            "week": 9,
+            "weekly_picks": {
+                "annie": {
+                    "picks": ["Florida", "Missouri", "Alabama", "Ole Miss", "Texas A&M", "Georgia"]
+                },
+                "carolyn": {
+                    "picks": ["Florida", "Vanderbilt", "Alabama", "Mississippi State", "Texas A&M", "Georgia"],
+                    "upset": "Mississippi State"
+                },
+                "rudy": {
+                    "picks": ["Florida", "Missouri", "Alabama", "Mississippi State", "Texas A&M", "Georgia"],
+                    "upset": "Mississippi State"
+                },
+                "jenny": {
+                    "picks": ["Florida", "Missouri", "Alabama", "Ole Miss", "Texas A&M", "South Carolina"],
+                    "upset": "South Carolina"
+                },
+                "blake": {
+                    "picks": ["Florida", "Missouri", "Alabama", "Ole Miss", "LSU", "Georgia"],
+                    "upset": "LSU"
+                },
+                "brandi": {
+                    "picks": ["Florida", "Missouri", "Alabama", "Mississippi State", "Texas A&M", "Georgia"],
+                    "upset": "Mississippi State"
+                }
+            }
+        },
+        {
+            "week": 10,
+            "weekly_picks": {
+                "annie": {
+                    "picks": ["Texas A&M", "Arkansas", "Florida", "Kentucky", "Alabama"],
+                    "upset": "Arkansas"
+                },
+                "carolyn": {
+                    "picks": ["Texas A&M", "Arkansas", "Florida", "South Carolina", "Alabama"],
+                    "upset": "South Carolina"
+                },
+                "rudy": {
+                    "picks": ["Texas A&M", "Arkansas", "Florida", "South Carolina", "Alabama"],
+                    "upset": "South Carolina"
+                },
+                "jenny": {
+                    "picks": ["Auburn", "Missouri", "Tennessee", "Kentucky", "LSU"],
+                    "upset": "Auburn"
+                },
+                "blake": {
+                    "picks": ["Texas A&M", "Arkansas", "Florida", "Kentucky", "Alabama"],
+                    "upset": "Arkansas"
+                },
+                "brandi": {
+                    "picks": ["Auburn", "Missouri", "Florida", "Kentucky", "Alabama"],
+                    "upset": "Auburn"
+                }
+            }
+        },
+        {
+            "week": 11,
+            "weekly_picks": {
+                "annie": {
+                    "picks": ["Alabama", "Georgia", "Tennessee", "Florida", "Mississippi State"],
+                    "upset": "Mississippi State"
+                },
+                "carolyn": {
+                    "picks": ["Arkansas", "Georgia", "Tennessee", "Florida", "Auburn"],
+                    "upset": "Arkansas"
+                },
+                "rudy": {
+                    "picks": ["Arkansas", "Georgia", "Tennessee", "Florida", "Mississippi State"],
+                    "upset": "Mississippi State"
+                },
+                "jenny": {
+                    "picks": ["Arkansas", "Missouri", "Vanderbilt", "Florida", "Mississippi State"],
+                    "upset": "Mississippi State"
+                },
+                "blake": {
+                    "picks": ["Alabama", "Georgia", "Tennessee", "Florida", "Mississippi State"]
+                },
+                "brandi": {
+                    "picks": ["Alabama", "Missouri", "Tennessee", "Florida", "Auburn"],
+                    "upset": "Missouri"
+                }
+            }
+        },
+        {
+            "week": 12,
+            "weekly_picks": {
+                "annie": {
+                    "picks": ["Texas A&M", "LSU", "Missouri", "Alabama"],
+                    "upset": "LSU"
+                },
+                "carolyn": {
+                    "picks": ["Texas A&M", "Ole Miss", "Missouri", "Alabama"]
+                },
+                "rudy": {
+                    "picks": ["Texas A&M", "LSU", "Missouri", "Alabama"],
+                    "upset": "LSU"
+                },
+                "jenny": {
+                    "picks": ["Tennessee", "LSU", "Mississippi State", "Alabama"],
+                    "upset": "Mississippi State"
+                },
+                "blake": {
+                    "picks": ["Texas A&M", "Ole Miss", "Missouri", "Alabama"]
+                },
+                "brandi": {
+                    "picks": ["Texas A&M", "LSU", "Missouri", "Alabama"],
+                    "upset": "LSU"
+                }
+            }
+        }
+    ]
+}
