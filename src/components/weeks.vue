@@ -77,20 +77,13 @@ export default {
 			games: [],
 			weekly_points: {},
 			total_points: {},
-			new_picks: {},
 		};
 	},
 	created() {
 		this.picks = picks.default;
-		axios.get(' http://localhost:3000/picks')
-			.then(response => {
-				this.new_picks = response.data;
-				console.log("new_picks", this.new_picks)
-			});
 		axios
 			.get('http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?limit=1000&dates=20200901-20201220&groups=8')
 			.then(response => {
-				console.log('response', response);
 				this.games = response.data.events
 				.filter(game => game.status.type.detail != 'Postponed')
 				.sort((a, b) => a.date < b.date ? -1 : 1)
