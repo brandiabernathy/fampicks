@@ -82,7 +82,7 @@ export default {
 	created() {
 		this.picks = picks.default;
 		axios
-			.get('http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?limit=1000&dates=20200901-20201220&groups=8')
+			.get('https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?limit=1000&dates=20200901-20201220&groups=8')
 			.then(response => {
 				this.games = response.data.events
 				.filter(game => game.status.type.detail != 'Postponed')
