@@ -84,7 +84,6 @@ export default {
 		axios
 			.get('https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?limit=1000&dates=20200901-20201220&groups=8')
 			.then(response => {
-				console.log('reseponse.data.events', response.data.events);
 				this.games = response.data.events
 				.filter(game => game.status.type.detail != 'Postponed' && game.competitions[0].competitors[0].id != '201' && game.competitions[0].competitors[1].id != '201' && game.competitions[0].competitors[0].id != '251' && game.competitions[0].competitors[1].id != '251')
 				.sort((a, b) => a.date < b.date ? -1 : 1)
